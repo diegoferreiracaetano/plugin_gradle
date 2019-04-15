@@ -9,5 +9,4 @@ open class LibsExtension {
     val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_LAYOUT}"
     val recyclerview = "androidx.recyclerview:recyclerview:${Versions.RECYCLE_VIEW}"
     val material = "com.google.android.material:material:${Versions.MATERIAL_DESING}"
-    val junit = "junit:junit:${Versions.JUNIT}"
 }
