@@ -1,6 +1,6 @@
 package com.diegoferreiracaetano.versions.dependencies
 
-object DefaultExtension {
+open class DefaultExtension {
    val LIBS = listOf(
       LibsExtension.Android.APP_COMPAT,
       LibsExtension.Android.CONSTRAINT_LAYOUT,
