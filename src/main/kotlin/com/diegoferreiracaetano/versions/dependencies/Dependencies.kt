@@ -8,17 +8,18 @@ open class Dependencies {
     private val libs = LibsExtension()
     private val android = LibsExtension().Android()
 
-    val LIBS = listOf(
+    val DEFAULT_LIBS = listOf(
         android.APP_COMPAT,
         android.CONSTRAINT_LAYOUT,
         android.RECYCLER_VIEW,
         android.FRAGMENT,
         android.CORE_COMMON,
         android.CORE_RUNTIME,
-        android.DESIGN
+        android.DESIGN,
+        libs.KOTLIN
     )
 
-    val TEST = listOf(
+    val DEFAULT_TEST = listOf(
         test.KOTLIN,
         test.CORE,
         test.ESPRESSO,
