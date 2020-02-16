@@ -4,7 +4,7 @@ import com.diegoferreiracaetano.versions.Versions
 
 open class LibsExtension {
 
-    companion object {
+    open companion object {
         const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.KOTLIN}"
         const val OKHTTP = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP}"
         const val OKHTTP_LOGGER = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
@@ -23,7 +23,7 @@ open class LibsExtension {
         const val MAPS = "com.google.android.gms:play-services-maps:${Versions.MAPS}"
     }
 
-    object Android {
+    open object Android {
         const val EXIF_INTERFACE =
             "androidx.exifinterface:exifinterface:${Versions.SUPPORT_LIBRARY}"
         const val APP_COMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT}"
