@@ -1,0 +1,33 @@
+package com.diegoferreiracaetano.versions.dependencies
+
+import com.diegoferreiracaetano.versions.Versions
+
+open class Dependencies {
+
+    private val test = TestExtension()
+    private val libs = LibsExtension()
+    private val android = LibsExtension().Android()
+
+    val LIBS = listOf(
+        android.APP_COMPAT,
+        android.CONSTRAINT_LAYOUT,
+        android.RECYCLER_VIEW,
+        android.FRAGMENT,
+        android.CORE_COMMON,
+        android.CORE_RUNTIME,
+        android.DESIGN
+    )
+
+    val TEST = listOf(
+        test.KOTLIN,
+        test.CORE,
+        test.ESPRESSO,
+        test.COROUTINES,
+        test.FRAGMENT_TEST,
+        test.JUNIT,
+        test.JUNIT_EXT,
+        test.KOIN,
+        test.MOCKITO,
+        test.MOCKK
+    )
+}
