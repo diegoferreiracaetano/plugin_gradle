@@ -24,7 +24,6 @@ open class LibsExtension {
          val FRAGMENT = "androidx.fragment:fragment:${Versions.SUPPORT_LIBRARY}"
          val CARD_VIEW = "androidx.cardview:cardview:${Versions.SUPPORT_LIBRARY}"
          val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${Versions.SUPPORT_LIBRARY}"
-         val RAINT_LAYOUT = "androidx.raintlayout:raintlayout:${Versions.RAINT_LAYOUT}"
          val DESIGN = "com.android.support:design:${Versions.SUPPORT_LIBRARY}"
          val CORE_COMMON = "androidx.arch.core:core-common:${Versions.CORE_ARCH}"
          val CORE_RUNTIME = "androidx.arch.core:core-runtime:${Versions.CORE_ARCH}"
