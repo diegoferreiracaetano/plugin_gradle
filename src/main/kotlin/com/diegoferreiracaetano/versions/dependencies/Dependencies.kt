@@ -16,7 +16,8 @@ open class Dependencies {
         android.CORE_COMMON,
         android.CORE_RUNTIME,
         android.DESIGN,
-        libs.KOTLIN
+        libs.KOTLIN,
+        libs.Koin().SCOPE
     )
 
     val DEFAULT_TEST = listOf(

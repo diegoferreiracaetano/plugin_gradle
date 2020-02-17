@@ -60,4 +60,10 @@ open class LibsExtension {
          val RUNTIME = "androidx.room:room-runtime:${Versions.ROOM}"
          val ROOM = "androidx.room:room-ktx:${Versions.ROOM}"
     }
+
+    inner class Koin {
+        const val SCOPE = "org.koin:koin-androidx-scope:${Versions.KOIN}"
+        const val ANDROID = "org.koin:koin-android:${Versions.KOIN}"
+        const val VIEW_MODEL = "org.koin:koin-androidx-viewmodel:${Versions.KOIN}"
+    }
 }
