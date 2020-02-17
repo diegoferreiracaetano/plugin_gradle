@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.9"
+version = "0.0.10"
 
 repositories {
     mavenCentral()
@@ -15,9 +15,9 @@ repositories {
 }
 
 dependencies {
-    compile(gradleApi())
-    compile(kotlin("stdlib-jdk8"))
-    testCompile("junit", "junit", "4.12")
+    implementation(gradleApi())
+    implementation(kotlin("stdlib-jdk8"))
+    testImplementation("junit", "junit", "4.12")
 }
 
 configure<JavaPluginConvention> {

@@ -25,11 +25,15 @@ open class Dependencies {
         test.CORE,
         test.ESPRESSO,
         test.COROUTINES,
-        test.FRAGMENT_TEST,
         test.JUNIT,
         test.JUNIT_EXT,
         test.KOIN,
         test.MOCKITO,
-        test.MOCKK
+        test.MOCKK,
+        test.RUNNER,
+        test.ESPRESSO_CONTRIB,
+        test.ROBOELETRIC,
+        test.MOCKK_ANDROID,
+        test.MOCKITO_KOTLIN
     )
 }
