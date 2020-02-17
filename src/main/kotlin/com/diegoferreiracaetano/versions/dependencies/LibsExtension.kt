@@ -62,8 +62,8 @@ open class LibsExtension {
     }
 
     inner class Koin {
-        const val SCOPE = "org.koin:koin-androidx-scope:${Versions.KOIN}"
-        const val ANDROID = "org.koin:koin-android:${Versions.KOIN}"
-        const val VIEW_MODEL = "org.koin:koin-androidx-viewmodel:${Versions.KOIN}"
+        val SCOPE = "org.koin:koin-androidx-scope:${Versions.KOIN}"
+        val ANDROID = "org.koin:koin-android:${Versions.KOIN}"
+        val VIEW_MODEL = "org.koin:koin-androidx-viewmodel:${Versions.KOIN}"
     }
 }
