@@ -7,12 +7,18 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.10"
+version = "0.0.11"
+
+apply {
+    from("$rootDir/tools/ktlint.gradle")
+    from("$rootDir/tools/base.gradle")
+}
 
 repositories {
     mavenCentral()
     jcenter()
 }
+
 
 dependencies {
     implementation(gradleApi())
