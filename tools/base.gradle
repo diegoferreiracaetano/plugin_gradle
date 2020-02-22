@@ -1,4 +1,4 @@
 apply {
-    from( "$rootDir/tools/jacoco.gradle")
-    from( "$rootDir/tools/sonar.gradle")
+    from( "https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/ktlint.gradle/tools/jacoco.gradle")
+    from( "https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/ktlint.gradle/tools/sonar.gradle")
 }
