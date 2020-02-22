@@ -1,0 +1,12 @@
+apply plugin: 'org.sonarqube'
+
+sonarqube {
+    androidVariant 'debug'
+
+    properties {
+        property "sonar.exclusions", "**/*Module.kt"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.android.lint.report", "build/outputs/lint-results.xml"
+    }
+}

@@ -16,6 +16,7 @@ class DependenciesPlugin : Plugin<Project> {
 
         project.apply {
             it.from("${project.rootDir}/tools/ktlint.gradle")
+            it.from("${project.rootDir}/tools/base.gradle")
         }
     }
 }
