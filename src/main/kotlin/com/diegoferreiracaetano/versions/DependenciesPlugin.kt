@@ -9,8 +9,6 @@ import org.gradle.api.Project
 
 class DependenciesPlugin : Plugin<Project> {
 
-    private val root = Project.GRADLE_PROPERTIES
-
     override fun apply(project: Project) {
         project.extensions.create("LIBS", Dependencies::class.java)
         project.extensions.create("LIB", LibsExtension::class.java)
@@ -18,8 +16,8 @@ class DependenciesPlugin : Plugin<Project> {
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
 
         project.apply {
-            it.from("${project.parent?.rootDir}/tools/ktlint.gradle")
-            it.from("${project.parent?.rootDir}/tools/base.gradle")
+            it.from("/tools/ktlint.gradle")
+            it.from("/tools/base.gradle")
         }
     }
 }

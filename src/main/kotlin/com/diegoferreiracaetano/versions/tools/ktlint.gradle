@@ -1,3 +1,5 @@
+package com.diegoferreiracaetano.versions.tools
+
 configurations {
     ktlint
 }
