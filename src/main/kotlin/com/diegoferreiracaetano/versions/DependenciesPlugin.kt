@@ -14,10 +14,8 @@ class DependenciesPlugin : Plugin<Project> {
         project.extensions.create("LIB", LibsExtension::class.java)
         project.extensions.create("TEST", TestExtension::class.java)
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
-
         project.apply {
-            it.from("/tools/ktlint.gradle")
-            it.from("/tools/base.gradle")
+            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/ktlint.gradle")
         }
     }
 }

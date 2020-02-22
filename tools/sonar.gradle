@@ -1,5 +1,3 @@
-package com.diegoferreiracaetano.versions.tools
-
 apply plugin: 'org.sonarqube'
 
 sonarqube {

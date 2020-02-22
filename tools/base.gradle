@@ -1,5 +1,3 @@
-package com.diegoferreiracaetano.versions.tools
-
 apply {
     from( "$rootDir/tools/jacoco.gradle")
     from( "$rootDir/tools/sonar.gradle")

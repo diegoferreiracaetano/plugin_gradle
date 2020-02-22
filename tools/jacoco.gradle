@@ -1,5 +1,3 @@
-package com.diegoferreiracaetano.versions.tools
-
 tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
     jacoco.excludes = ['jdk.internal.*']
