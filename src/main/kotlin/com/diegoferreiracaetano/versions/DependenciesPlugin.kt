@@ -13,7 +13,7 @@ import java.util.*
 
 class DependenciesPlugin : Plugin<Project> {
 
-    private val Project.configDir get() = Properties().get("test")
+    private val Project.configDir get() = project.extensions.extraProperties.get("test")
 
     override fun apply(project: Project) {
 
@@ -34,11 +34,7 @@ class DependenciesPlugin : Plugin<Project> {
                 it.plugin("kotlin-android-extensions")
                 it.plugin("com.github.triplet.play")
 
-                val test = listOf<BaseExtension>()
-
-
-
-                project.configure(test) {
+                project.configure(listOf<BaseExtension>()) {
                     it.signingConfigs {
 
 
