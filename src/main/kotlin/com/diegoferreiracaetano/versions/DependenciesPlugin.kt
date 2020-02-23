@@ -12,15 +12,9 @@ import java.io.FileInputStream
 import java.util.*
 
 class DependenciesPlugin : Plugin<Project> {
-
-    val currentDirFile = File(".")
-    val helper = currentDirFile.absolutePath
-    val currentDir = helper.substring(0, helper.length - currentDirFile.canonicalPath.length) //this line may need a try-catch block
-
-
     override fun apply(project: Project) {
 
-        val configDir = currentDir
+        val configDir = System.getProperty("TESTE")
 
         project.extensions.create("LIBS", Dependencies::class.java)
         project.extensions.create("LIB", LibsExtension::class.java)

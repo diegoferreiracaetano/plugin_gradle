@@ -7,15 +7,13 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.46"
+version = "0.0.47"
 
 repositories {
     mavenCentral()
     jcenter()
     google()
 }
-
-val Project.configDir get() = "$rootDir"
 
 dependencies {
     implementation("com.android.tools.build:gradle:3.5.3")
@@ -29,6 +27,7 @@ configure<JavaPluginConvention> {
 }
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+    System.setProperty("TESTE", "1")
 }
 
 
