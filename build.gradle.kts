@@ -1,5 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+ext.set("test", "1.3.41")
+
 plugins {
     java
     maven
@@ -7,7 +9,7 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.33"
+version = "0.0.34"
 
 repositories {
     mavenCentral()
