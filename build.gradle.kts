@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.util.*
 
-ext.set("test", "1.3.41")
 
 plugins {
     java
@@ -9,14 +9,16 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.34"
+version = "0.0.35"
 
 repositories {
     mavenCentral()
     jcenter()
     google()
 }
-
+buildscript {
+    Properties().setProperty("test", "diego")
+}
 dependencies {
     implementation("com.android.tools.build:gradle:3.5.3")
     implementation(gradleApi())
