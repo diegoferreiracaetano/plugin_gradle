@@ -7,18 +7,22 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.30"
+version = "0.0.31"
 
 repositories {
     mavenCentral()
     jcenter()
+    google()
 }
 
 dependencies {
+    implementation("com.android.tools.build:gradle:3.5.3")
     implementation(gradleApi())
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")
 }
+
+
 
 
 configure<JavaPluginConvention> {
