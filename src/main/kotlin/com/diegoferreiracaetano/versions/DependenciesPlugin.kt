@@ -13,7 +13,7 @@ import java.util.*
 
 class DependenciesPlugin : Plugin<Project> {
 
-    private val Project.configDir get() = "$rootDir"
+    private val Project.configDir get() = "com.diegoferreiracaetano.versions"
 
     override fun apply(project: Project) {
 
