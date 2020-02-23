@@ -20,7 +20,7 @@ class DependenciesPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
 
-        val configDir = currentDirFile
+        val configDir = currentDir
 
         project.extensions.create("LIBS", Dependencies::class.java)
         project.extensions.create("LIB", LibsExtension::class.java)
