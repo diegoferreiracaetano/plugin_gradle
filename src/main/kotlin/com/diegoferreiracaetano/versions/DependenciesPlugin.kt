@@ -13,7 +13,7 @@ import java.util.*
 
 class DependenciesPlugin : Plugin<Project> {
 
-    private val Project.configDir get() = project.extensions.extraProperties.get("test")
+    private val Project.configDir get() = System.getProperty("test")
 
     override fun apply(project: Project) {
 

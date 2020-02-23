@@ -1,7 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.util.*
 
-val test = Properties().setProperty("test", "diego")
+val test = System.setProperty("test", "diego")
 
 plugins {
     java
@@ -10,7 +9,7 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.38"
+version = "0.0.39"
 
 repositories {
     mavenCentral()
