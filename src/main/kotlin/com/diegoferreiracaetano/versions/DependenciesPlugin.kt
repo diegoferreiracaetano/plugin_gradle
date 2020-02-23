@@ -16,16 +16,14 @@ class DependenciesPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
 
-        val configDir = System.getProperty("test")
-
         project.extensions.create("LIBS", Dependencies::class.java)
         project.extensions.create("LIB", LibsExtension::class.java)
         project.extensions.create("TEST", TestExtension::class.java)
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
         project.apply {
-            it.from("${configDir}/tools/ktlint.gradle")
-            it.from("${configDir}/tools/jacoco.gradle")
-            it.from("${configDir}/tools/sonar.gradle")
+            it.from(File("/tools/ktlint.gradle"))
+            it.from(File("tools/jacoco.gradle"))
+            it.from(File("/tools/sonar.gradle"))
             it.plugin("jacoco")
 
 
@@ -40,7 +38,7 @@ class DependenciesPlugin : Plugin<Project> {
 
 
                         it.register("customDebug") {
-                            it.storeFile = File("${configDir}/debug.keystore")
+                            it.storeFile = File("/debug.keystore")
                             it.storePassword = "android"
                             it.keyAlias = "androiddebugkey"
                             it.keyPassword = "android"
@@ -57,7 +55,7 @@ class DependenciesPlugin : Plugin<Project> {
                                 it.keyPassword = properties.getProperty("KEY_PASSWORD")
 
                             } else {
-                                it.storeFile = File("${configDir}/debug.keystore")
+                                it.storeFile = File("/debug.keystore")
                                 it.storePassword = "android"
                                 it.keyAlias = "androiddebugkey"
                                 it.keyPassword = "android"

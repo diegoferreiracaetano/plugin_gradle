@@ -7,16 +7,12 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.41"
+version = "0.0.42"
 
 repositories {
     mavenCentral()
     jcenter()
     google()
-}
-
-buildscript {
-    System.setProperty("test", "diego")
 }
 
 dependencies {
