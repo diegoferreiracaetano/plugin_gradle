@@ -24,7 +24,7 @@ class DependenciesPlugin : Plugin<Project> {
                 it.plugin("kotlin-android")
                 it.plugin("kotlin-android-extensions")
 
-                if (project.name == "app") {
+                if (project.name == "driver.app") {
 
                     it.plugin("com.android.application")
                     it.plugin("com.github.triplet.play")
