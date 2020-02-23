@@ -7,13 +7,15 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.44"
+version = "0.0.45"
 
 repositories {
     mavenCentral()
     jcenter()
     google()
 }
+
+val Project.configDir get() = "$rootDir"
 
 dependencies {
     implementation("com.android.tools.build:gradle:3.5.3")

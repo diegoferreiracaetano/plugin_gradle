@@ -13,17 +13,23 @@ import java.util.*
 
 class DependenciesPlugin : Plugin<Project> {
 
+    val currentDirFile = File(".")
+    val helper = currentDirFile.absolutePath
+    val currentDir = helper.substring(0, helper.length - currentDirFile.canonicalPath.length) //this line may need a try-catch block
+
 
     override fun apply(project: Project) {
+
+        val configDir = currentDirFile
 
         project.extensions.create("LIBS", Dependencies::class.java)
         project.extensions.create("LIB", LibsExtension::class.java)
         project.extensions.create("TEST", TestExtension::class.java)
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
         project.apply {
-            it.from(File("tools/ktlint.gradle"))
-            it.from(File("${project.parent?.buildDir}/tools/jacoco.gradle"))
-            it.from(File("/tools/sonar.gradle"))
+            it.from("${configDir}/tools/ktlint.gradle")
+            it.from("${configDir}/tools/jacoco.gradle")
+            it.from("${configDir}/tools/sonar.gradle")
             it.plugin("jacoco")
 
 
@@ -55,7 +61,7 @@ class DependenciesPlugin : Plugin<Project> {
                                 it.keyPassword = properties.getProperty("KEY_PASSWORD")
 
                             } else {
-                                it.storeFile = File("/debug.keystore")
+                                it.storeFile = File("${configDir}/debug.keystore")
                                 it.storePassword = "android"
                                 it.keyAlias = "androiddebugkey"
                                 it.keyPassword = "android"
