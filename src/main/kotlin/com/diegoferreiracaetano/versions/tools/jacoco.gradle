@@ -1,3 +1,5 @@
+package com.diegoferreiracaetano.versions.tools
+
 task jacocoTestReport(type: JacocoReport) {
     group 'Reporting'
     description 'Run tests and generate coverage report for instrumented and jvm testes'

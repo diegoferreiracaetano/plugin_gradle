@@ -22,7 +22,7 @@ class DependenciesPlugin : Plugin<Project> {
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
         project.apply {
             it.from(File("/tools/ktlint.gradle"))
-            it.from(File("tools/jacoco.gradle"))
+            it.from(File("/tools/jacoco.gradle"))
             it.from(File("/tools/sonar.gradle"))
             it.plugin("jacoco")
 
