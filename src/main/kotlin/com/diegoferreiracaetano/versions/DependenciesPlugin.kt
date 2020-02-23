@@ -27,7 +27,7 @@ class DependenciesPlugin : Plugin<Project> {
                 if (project.name == "app") {
 
                     it.plugin("com.android.application")
-                    it.plugin("com.github.triplet.play:2.6.2")
+                    it.plugin("com.github.triplet.play")
 
                 }
             }
