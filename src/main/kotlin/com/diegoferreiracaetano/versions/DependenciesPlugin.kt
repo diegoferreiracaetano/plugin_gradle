@@ -21,15 +21,10 @@ class DependenciesPlugin : Plugin<Project> {
             it.plugin("jacoco")
 
             if (project.hasProperty("android")) {
+                it.plugin("com.android.application")
                 it.plugin("kotlin-android")
                 it.plugin("kotlin-android-extensions")
-
-                if (project.name == "driver.app") {
-
-                    it.plugin("com.android.application")
-                    it.plugin("com.github.triplet.play")
-
-                }
+                it.plugin("com.github.triplet.play")
             }
         }
     }
