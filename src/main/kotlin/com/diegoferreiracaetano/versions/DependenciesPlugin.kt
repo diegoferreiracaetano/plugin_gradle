@@ -7,6 +7,7 @@ import com.diegoferreiracaetano.versions.dependencies.LibsExtension
 import com.diegoferreiracaetano.versions.dependencies.TestExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import java.io.File
 import java.io.FileInputStream
 import java.util.*
@@ -106,6 +107,9 @@ class DependenciesPlugin : Plugin<Project> {
                         it.version = Versions.JACOCO
                     }
                 }
+            }
+            project.configure(listOf<JacocoTaskExtension>()) {
+                it.isIncludeNoLocationClasses = true
             }
         }
     }
