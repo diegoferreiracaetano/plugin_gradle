@@ -20,10 +20,11 @@ class DependenciesPlugin : Plugin<Project> {
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
         project.apply {
 
-            it.plugin("jacoco")
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/ktlint.gradle")
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/sonar.gradle")
+
+            it.plugin("jacoco")
 
             if (project.hasProperty("android")) {
 
