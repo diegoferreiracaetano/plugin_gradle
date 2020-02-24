@@ -95,10 +95,6 @@ class DependenciesPlugin : Plugin<Project> {
                         isIncludeAndroidResources = true
                     }
                 }
-
-                jacoco {
-                    it.version = Versions.JACOCO
-                }
             }
         }
     }
