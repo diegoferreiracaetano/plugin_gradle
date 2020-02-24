@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.47"
+version = "0.0.48"
 
 repositories {
     mavenCentral()
@@ -27,7 +27,6 @@ configure<JavaPluginConvention> {
 }
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
-    System.setProperty("TESTE", "1")
 }
 
 

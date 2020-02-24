@@ -14,28 +14,31 @@ import java.util.*
 class DependenciesPlugin : Plugin<Project> {
     override fun apply(project: Project) {
 
-        val configDir = System.getProperty("TESTE")
-
         project.extensions.create("LIBS", Dependencies::class.java)
         project.extensions.create("LIB", LibsExtension::class.java)
         project.extensions.create("TEST", TestExtension::class.java)
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
         project.apply {
-            it.from("${configDir}/tools/ktlint.gradle")
-            it.from("${configDir}/tools/jacoco.gradle")
-            it.from("${configDir}/tools/sonar.gradle")
-            it.plugin("jacoco")
 
+            it.plugin("jacoco")
+            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/ktlint.gradle")
+            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
+            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/sonar.gradle")
 
             if (project.hasProperty("android")) {
-                it.plugin("com.android.application")
+
+                if (project.name == "app") {
+                    it.plugin("com.android.application")
+                } else {
+                    it.plugin("com.android.library")
+                }
+
                 it.plugin("kotlin-android")
                 it.plugin("kotlin-android-extensions")
                 it.plugin("com.github.triplet.play")
 
                 project.configure(listOf<BaseExtension>()) {
                     it.signingConfigs {
-
 
                         it.register("customDebug") {
                             it.storeFile = File("/debug.keystore")
@@ -55,7 +58,7 @@ class DependenciesPlugin : Plugin<Project> {
                                 it.keyPassword = properties.getProperty("KEY_PASSWORD")
 
                             } else {
-                                it.storeFile = File("${configDir}/debug.keystore")
+                                it.storeFile = File("${project.rootDir}/debug.keystore")
                                 it.storePassword = "android"
                                 it.keyAlias = "androiddebugkey"
                                 it.keyPassword = "android"
