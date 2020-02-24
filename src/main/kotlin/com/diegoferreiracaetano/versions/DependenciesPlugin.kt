@@ -26,7 +26,6 @@ class DependenciesPlugin : Plugin<Project> {
             it.plugin("com.android.application")
             it.plugin("kotlin-android")
             it.plugin("kotlin-android-extensions")
-            it.plugin("com.github.triplet.play")
 
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/ktlint.gradle")
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
