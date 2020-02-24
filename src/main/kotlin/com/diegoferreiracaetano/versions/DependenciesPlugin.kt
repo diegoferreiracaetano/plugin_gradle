@@ -104,7 +104,7 @@ class DependenciesPlugin : Plugin<Project> {
             it.isIncludeNoLocationClasses = true
         }
 
-        if (File("upload.json").exists()) {
+        if (File("${project.rootDir}/upload.json").exists()) {
             project.configure(listOf<PlayPublisherExtension>()) {
                 it.serviceAccountCredentials = File("upload.json")
                 it.resolutionStrategy = "auto"
