@@ -92,12 +92,6 @@ class DependenciesPlugin : Plugin<Project> {
                 }
 
                 testOptions {
-                    it.unitTests.isIncludeAndroidResources = true
-                    it.unitTests.isReturnDefaultValues = true
-                    it.animationsDisabled = true
-                }
-
-                testOptions {
                     it.animationsDisabled = true
                     it.unitTests.apply {
                         isReturnDefaultValues = true

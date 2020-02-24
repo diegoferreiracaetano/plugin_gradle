@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.86"
+version = "0.0.87"
 
 repositories {
     mavenCentral()
