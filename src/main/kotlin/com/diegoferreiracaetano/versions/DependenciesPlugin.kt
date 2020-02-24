@@ -105,11 +105,13 @@ class DependenciesPlugin : Plugin<Project> {
             it.isIncludeNoLocationClasses = true
         }
 
-        project.configure(listOf<PlayPublisherExtension>()) {
-            it.serviceAccountCredentials = File("upload.json")
-            it.resolutionStrategy = "auto"
-            it.defaultToAppBundles = true
-            it.track = "internal"
+        if (File("../signing.properties").canRead()) {
+            project.configure(listOf<PlayPublisherExtension>()) {
+                it.serviceAccountCredentials = File("upload.json")
+                it.resolutionStrategy = "auto"
+                it.defaultToAppBundles = true
+                it.track = "internal"
+            }
         }
     }
 }
