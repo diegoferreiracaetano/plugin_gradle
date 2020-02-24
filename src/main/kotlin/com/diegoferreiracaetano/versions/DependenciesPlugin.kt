@@ -75,10 +75,6 @@ class DependenciesPlugin : Plugin<Project> {
                     it.getByName("debug") {
                         it.isTestCoverageEnabled = true
                     }
-
-                    it.create("test") {
-                        it.isTestCoverageEnabled = true
-                    }
                     it.getByName("release") {
                         it.signingConfig = signingConfigs.getByName("release")
                         it.isMinifyEnabled = true
