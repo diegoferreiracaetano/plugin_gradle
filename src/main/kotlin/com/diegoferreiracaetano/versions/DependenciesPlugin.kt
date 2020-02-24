@@ -24,6 +24,7 @@ class DependenciesPlugin : Plugin<Project> {
         project.apply {
             it.plugin("jacoco")
             it.plugin("com.android.application")
+            it.plugin("com.github.triplet.play")
             it.plugin("kotlin-android")
             it.plugin("kotlin-android-extensions")
 
