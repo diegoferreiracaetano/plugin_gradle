@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.74"
+version = "0.0.75"
 
 repositories {
     mavenCentral()
@@ -17,8 +17,8 @@ repositories {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:3.5.3")
-    implementation("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
+    api("com.android.tools.build:gradle:3.5.3")
+    api("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
     implementation(gradleKotlinDsl())
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")
