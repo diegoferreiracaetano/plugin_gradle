@@ -21,9 +21,7 @@ class DependenciesPlugin : Plugin<Project> {
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
         project.apply {
 
-            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/ktlint.gradle")
-            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
-            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/sonar.gradle")
+            it.plugin("jacoco")
 
             if (project.name == "app") {
                 it.plugin("com.android.application")
@@ -34,6 +32,10 @@ class DependenciesPlugin : Plugin<Project> {
             it.plugin("kotlin-android")
             it.plugin("kotlin-android-extensions")
             it.plugin("com.github.triplet.play")
+
+            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/ktlint.gradle")
+            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
+            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/sonar.gradle")
 
             project.configure(listOf<BaseExtension>()) { android ->
                 android.signingConfigs {
