@@ -25,8 +25,6 @@ class DependenciesPlugin : Plugin<Project> {
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/sonar.gradle")
 
-            it.plugin("jacoco")
-
             if (project.hasProperty("android")) {
 
                 if (project.name == "app") {
@@ -38,6 +36,7 @@ class DependenciesPlugin : Plugin<Project> {
                 it.plugin("kotlin-android")
                 it.plugin("kotlin-android-extensions")
                 it.plugin("com.github.triplet.play")
+                it.plugin("jacoco")
 
                 project.configure(listOf<BaseExtension>()) { android ->
                     android.signingConfigs {
