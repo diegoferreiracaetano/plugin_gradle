@@ -76,7 +76,7 @@ class DependenciesPlugin : Plugin<Project> {
                         it.isTestCoverageEnabled = true
                     }
 
-                    it.getByName("test") {
+                    it.create("test") {
                         it.isTestCoverageEnabled = true
                     }
                     it.getByName("release") {
