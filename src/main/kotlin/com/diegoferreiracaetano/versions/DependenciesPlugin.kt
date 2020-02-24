@@ -5,9 +5,13 @@ import com.diegoferreiracaetano.versions.dependencies.AndroidTestExtension
 import com.diegoferreiracaetano.versions.dependencies.Dependencies
 import com.diegoferreiracaetano.versions.dependencies.LibsExtension
 import com.diegoferreiracaetano.versions.dependencies.TestExtension
+import com.github.triplet.gradle.play.PlayPublisherExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.tasks.testing.Test
+import org.gradle.kotlin.dsl.KotlinClosure1
 import org.gradle.kotlin.dsl.configure
+import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import java.io.File
 import java.io.FileInputStream
 import java.util.*
@@ -89,9 +93,18 @@ class DependenciesPlugin : Plugin<Project> {
                 }
 
                 testOptions {
-                    it.unitTests.isIncludeAndroidResources = true
-                    it.unitTests.isReturnDefaultValues = true
                     it.animationsDisabled = true
+                    it.unitTests.apply {
+                        isReturnDefaultValues = true
+                        isIncludeAndroidResources = true
+                        all(KotlinClosure1<Any, Test>({
+                            (this as Test).also { testTask ->
+                                testTask.extensions
+                                        .getByType(JacocoTaskExtension::class.java)
+                                        .isIncludeNoLocationClasses = true
+                            }
+                        }, this))
+                    }
                 }
 
                 jacoco {
@@ -99,5 +112,15 @@ class DependenciesPlugin : Plugin<Project> {
                 }
             }
         }
+
+
+        // if (File("${project.rootDir}/upload.json").exists()) {
+        project.configure<PlayPublisherExtension> {
+            serviceAccountCredentials = File("upload.json")
+            resolutionStrategy = "auto"
+            defaultToAppBundles = true
+            track = "internal"
+        }
+        //}
     }
 }

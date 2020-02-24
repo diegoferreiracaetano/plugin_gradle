@@ -13,10 +13,12 @@ repositories {
     mavenCentral()
     jcenter()
     google()
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:3.5.3")
+    implementation("com.android.tools.build:gradle:4.0.0-alpha09")
+    implementation("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
     implementation(gradleKotlinDsl())
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")
