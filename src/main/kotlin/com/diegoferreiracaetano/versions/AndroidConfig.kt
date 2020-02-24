@@ -2,7 +2,7 @@ package com.diegoferreiracaetano.versions
 
 object AndroidConfig {
 
-    const val APPLICATION_ID = "com.diegofrerreiracaetano.myapplication"
+    const val APPLICATION_ID = "com.diegoferreiracaetano.myapplication"
     const val COMPILE_SDK = 29
     const val MIN_SDK = 21
     const val TARGET_SDK = COMPILE_SDK
