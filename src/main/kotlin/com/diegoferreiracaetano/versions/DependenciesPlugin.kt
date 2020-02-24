@@ -1,10 +1,11 @@
 package com.diegoferreiracaetano.versions
 
-import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.AppExtension
 import com.diegoferreiracaetano.versions.dependencies.AndroidTestExtension
 import com.diegoferreiracaetano.versions.dependencies.Dependencies
 import com.diegoferreiracaetano.versions.dependencies.LibsExtension
 import com.diegoferreiracaetano.versions.dependencies.TestExtension
+import com.github.triplet.gradle.play.PlayPublisherExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
@@ -37,7 +38,7 @@ class DependenciesPlugin : Plugin<Project> {
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/sonar.gradle")
 
-            project.configure(listOf<BaseExtension>()) { android ->
+            project.configure(listOf<AppExtension>()) { android ->
                 android.signingConfigs {
 
                     it.register("customDebug") {
@@ -108,6 +109,13 @@ class DependenciesPlugin : Plugin<Project> {
         }
         project.configure(listOf<JacocoTaskExtension>()) {
             it.isIncludeNoLocationClasses = true
+        }
+
+        project.configure(listOf<PlayPublisherExtension>()) {
+            it.serviceAccountCredentials = File("upload.json")
+            it.resolutionStrategy = "auto"
+            it.defaultToAppBundles = true
+            it.track = "internal"
         }
     }
 }
