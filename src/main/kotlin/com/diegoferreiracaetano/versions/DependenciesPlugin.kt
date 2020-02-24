@@ -24,12 +24,7 @@ class DependenciesPlugin : Plugin<Project> {
 
             it.plugin("jacoco")
 
-            if (project.name == "app") {
-                it.plugin("com.android.application")
-            } else {
-                it.plugin("com.android.library")
-            }
-
+            it.plugin("com.android.application")
             it.plugin("kotlin-android")
             it.plugin("kotlin-android-extensions")
 
