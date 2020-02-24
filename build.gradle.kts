@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.62"
+version = "0.0.63"
 
 repositories {
     mavenCentral()
@@ -16,19 +16,9 @@ repositories {
     maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
-buildscript {
-    repositories {
-        maven("https://oss.sonatype.org/content/repositories/snapshots")
-    }
-
-    dependencies {
-        classpath("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
-    }
-}
-
 dependencies {
     implementation("com.android.tools.build:gradle:3.5.3")
-    api("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
+    implementation("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
     implementation(gradleApi())
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")
