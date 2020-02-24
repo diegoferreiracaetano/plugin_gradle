@@ -7,18 +7,16 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.83"
+version = "0.0.84"
 
 repositories {
     mavenCentral()
     jcenter()
     google()
-    maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 dependencies {
-    api("com.android.tools.build:gradle:3.5.3")
-    api("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
+    implementation("com.android.tools.build:gradle:3.5.3")
     implementation(gradleKotlinDsl())
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")
