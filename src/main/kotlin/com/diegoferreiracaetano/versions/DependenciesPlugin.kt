@@ -1,6 +1,6 @@
 package com.diegoferreiracaetano.versions
 
-import com.android.build.gradle.AppExtension
+import com.android.build.gradle.BaseExtension
 import com.diegoferreiracaetano.versions.dependencies.AndroidTestExtension
 import com.diegoferreiracaetano.versions.dependencies.Dependencies
 import com.diegoferreiracaetano.versions.dependencies.LibsExtension
@@ -23,7 +23,6 @@ class DependenciesPlugin : Plugin<Project> {
         project.apply {
 
             it.plugin("jacoco")
-
             it.plugin("com.android.application")
             it.plugin("kotlin-android")
             it.plugin("kotlin-android-extensions")
@@ -32,7 +31,7 @@ class DependenciesPlugin : Plugin<Project> {
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/sonar.gradle")
 
-            project.configure(listOf<AppExtension>()) { android ->
+            project.configure(listOf<BaseExtension>()) { android ->
                 android.signingConfigs {
 
                     it.register("customDebug") {
