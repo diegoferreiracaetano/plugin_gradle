@@ -8,6 +8,7 @@ import com.diegoferreiracaetano.versions.dependencies.TestExtension
 import com.github.triplet.gradle.play.PlayPublisherExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import java.io.File
 import java.io.FileInputStream
@@ -21,8 +22,6 @@ class DependenciesPlugin : Plugin<Project> {
         project.extensions.create("TEST", TestExtension::class.java)
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
 
-
-
         project.apply {
             it.plugin("jacoco")
             it.plugin("com.android.application")
@@ -33,8 +32,8 @@ class DependenciesPlugin : Plugin<Project> {
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/sonar.gradle")
 
-            project.configure(listOf<BaseExtension>()) { android ->
-                android.signingConfigs {
+            project.configure<BaseExtension> {
+                signingConfigs {
 
                     it.register("customDebug") {
                         it.storeFile = File("/debug.keystore")
@@ -62,8 +61,8 @@ class DependenciesPlugin : Plugin<Project> {
                     }
                 }
 
-                android.compileSdkVersion(AndroidConfig.COMPILE_SDK)
-                android.defaultConfig {
+                compileSdkVersion(AndroidConfig.COMPILE_SDK)
+                defaultConfig {
                     it.applicationId = AndroidConfig.APPLICATION_ID
                     it.minSdkVersion(AndroidConfig.MIN_SDK)
                     it.targetSdkVersion(AndroidConfig.TARGET_SDK)
@@ -72,7 +71,7 @@ class DependenciesPlugin : Plugin<Project> {
                     it.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 }
 
-                android.buildTypes {
+                buildTypes {
                     it.getByName("debug") {
                         it.isTestCoverageEnabled = true
                     }
@@ -81,13 +80,13 @@ class DependenciesPlugin : Plugin<Project> {
                         it.isTestCoverageEnabled = true
                     }
                     it.getByName("release") {
-                        it.signingConfig = android.signingConfigs.getByName("release")
+                        it.signingConfig = signingConfigs.getByName("release")
                         it.isMinifyEnabled = true
                         it.isShrinkResources = true
                     }
                 }
 
-                android.sourceSets {
+                sourceSets {
                     it.getByName("androidTest").java.srcDirs(Source.ANDROID_TEST, Source.SHARED_TEST)
                     it.getByName("androidTest").assets.srcDirs(Source.SHARED_TEST_RESOURCES)
                     it.getByName("main").java.srcDirs(Source.MAIN)
@@ -95,27 +94,27 @@ class DependenciesPlugin : Plugin<Project> {
                     it.getByName("test").resources.srcDirs(Source.SHARED_TEST_RESOURCES)
                 }
 
-                android.testOptions {
+                testOptions {
                     it.unitTests.isIncludeAndroidResources = true
                     it.unitTests.isReturnDefaultValues = true
                     it.animationsDisabled = true
                 }
 
-                android.jacoco {
+                jacoco {
                     it.version = Versions.JACOCO
                 }
             }
         }
-        project.configure(listOf<JacocoTaskExtension>()) {
-            it.isIncludeNoLocationClasses = true
+        project.configure<JacocoTaskExtension> {
+            isIncludeNoLocationClasses = true
         }
 
         // if (File("${project.rootDir}/upload.json").exists()) {
-        project.configure(listOf<PlayPublisherExtension>()) {
-            it.serviceAccountCredentials = File("upload.json")
-            it.resolutionStrategy = "auto"
-            it.defaultToAppBundles = true
-            it.track = "internal"
+        project.configure<PlayPublisherExtension> {
+            serviceAccountCredentials = File("upload.json")
+            resolutionStrategy = "auto"
+            defaultToAppBundles = true
+            track = "internal"
         }
         //}
     }
