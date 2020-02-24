@@ -7,10 +7,7 @@ import com.diegoferreiracaetano.versions.dependencies.LibsExtension
 import com.diegoferreiracaetano.versions.dependencies.TestExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.tasks.testing.Test
-import org.gradle.kotlin.dsl.KotlinClosure1
 import org.gradle.kotlin.dsl.configure
-import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import java.io.File
 import java.io.FileInputStream
 import java.util.Properties
@@ -24,13 +21,13 @@ class DependenciesPlugin : Plugin<Project> {
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
 
         project.apply {
-            it.plugin("jacoco")
+            //it.plugin("jacoco")
             it.plugin("com.android.application")
             it.plugin("kotlin-android")
             it.plugin("kotlin-android-extensions")
 
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/ktlint.gradle")
-            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
+            //it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/sonar.gradle")
 
             project.configure<AppExtension> {
@@ -96,13 +93,6 @@ class DependenciesPlugin : Plugin<Project> {
                     it.unitTests.apply {
                         isReturnDefaultValues = true
                         isIncludeAndroidResources = true
-                        all(KotlinClosure1<Any, Test>({
-                            (this as Test).also { testTask ->
-                                testTask.extensions
-                                    .getByType(JacocoTaskExtension::class.java)
-                                    .isIncludeNoLocationClasses = true
-                            }
-                        }, this))
                     }
                 }
 

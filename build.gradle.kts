@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.90"
+version = "0.0.91"
 
 repositories {
     mavenCentral()
@@ -17,7 +17,6 @@ repositories {
 
 dependencies {
     implementation("com.android.tools.build:gradle:3.5.3")
-    implementation("org.jacoco:org.jacoco.core:0.8.5")
     implementation(gradleKotlinDsl())
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")
