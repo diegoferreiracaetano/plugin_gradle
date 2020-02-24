@@ -104,13 +104,13 @@ class DependenciesPlugin : Plugin<Project> {
             it.isIncludeNoLocationClasses = true
         }
 
-        if (File("${project.rootDir}/upload.json").exists()) {
+       // if (File("${project.rootDir}/upload.json").exists()) {
             project.configure(listOf<PlayPublisherExtension>()) {
                 it.serviceAccountCredentials = File("upload.json")
                 it.resolutionStrategy = "auto"
                 it.defaultToAppBundles = true
                 it.track = "internal"
             }
-        }
+        //}
     }
 }
