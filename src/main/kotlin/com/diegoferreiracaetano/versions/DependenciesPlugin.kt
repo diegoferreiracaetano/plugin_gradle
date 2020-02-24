@@ -24,6 +24,8 @@ class DependenciesPlugin : Plugin<Project> {
         project.subprojects {
 
             project.afterEvaluate {
+                if (!it.hasProperty("android")) return@afterEvaluate
+
                 it.apply {
                     it.plugin("jacoco")
                     it.plugin("com.android.application")
@@ -115,7 +117,6 @@ class DependenciesPlugin : Plugin<Project> {
                     it.track = "internal"
                 }
                 //}
-
             }
         }
     }
