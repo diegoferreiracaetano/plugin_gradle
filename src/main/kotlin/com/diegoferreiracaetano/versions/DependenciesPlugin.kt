@@ -5,11 +5,9 @@ import com.diegoferreiracaetano.versions.dependencies.AndroidTestExtension
 import com.diegoferreiracaetano.versions.dependencies.Dependencies
 import com.diegoferreiracaetano.versions.dependencies.LibsExtension
 import com.diegoferreiracaetano.versions.dependencies.TestExtension
-import com.github.triplet.gradle.play.PlayPublisherExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import java.io.File
 import java.io.FileInputStream
 import java.util.*
@@ -101,17 +99,5 @@ class DependenciesPlugin : Plugin<Project> {
                 }
             }
         }
-        project.configure<JacocoTaskExtension> {
-            isIncludeNoLocationClasses = true
-        }
-
-        // if (File("${project.rootDir}/upload.json").exists()) {
-        project.configure<PlayPublisherExtension> {
-            serviceAccountCredentials = File("upload.json")
-            resolutionStrategy = "auto"
-            defaultToAppBundles = true
-            track = "internal"
-        }
-        //}
     }
 }
