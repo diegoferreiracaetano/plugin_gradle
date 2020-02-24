@@ -22,7 +22,6 @@ class DependenciesPlugin : Plugin<Project> {
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
 
         project.apply {
-
             it.plugin("jacoco")
             it.plugin("com.android.application")
             it.plugin("kotlin-android")
@@ -105,7 +104,7 @@ class DependenciesPlugin : Plugin<Project> {
             it.isIncludeNoLocationClasses = true
         }
 
-        if (false) {
+        if (File("upload.json").exists()) {
             project.configure(listOf<PlayPublisherExtension>()) {
                 it.serviceAccountCredentials = File("upload.json")
                 it.resolutionStrategy = "auto"
