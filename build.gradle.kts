@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.57"
+version = "0.0.58"
 
 repositories {
     mavenCentral()
@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     implementation("com.android.tools.build:gradle:3.5.3")
-    implementation("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
+    api("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
     implementation(gradleApi())
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")
