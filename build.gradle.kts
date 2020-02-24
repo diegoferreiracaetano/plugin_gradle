@@ -7,13 +7,27 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.0.80"
+version = "0.0.81"
 
 repositories {
     mavenCentral()
     jcenter()
     google()
     maven("https://oss.sonatype.org/content/repositories/snapshots")
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+        google()
+        maven("https://oss.sonatype.org/content/repositories/snapshots")
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:3.5.3")
+        classpath("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
+    }
 }
 
 dependencies {
