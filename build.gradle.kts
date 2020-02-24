@@ -17,8 +17,8 @@ repositories {
 }
 
 dependencies {
-    api("com.android.tools.build:gradle:3.5.3")
-    api("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
+    implementation("com.android.tools.build:gradle:3.5.3")
+    implementation("com.github.triplet.gradle:play-publisher:2.8.0-SNAPSHOT")
     implementation(gradleKotlinDsl())
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")
