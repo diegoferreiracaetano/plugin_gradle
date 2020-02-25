@@ -21,4 +21,6 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: 'Get next minor version'
-        run: echo ./tags.sh "${{ steps.previoustag.outputs.tag }}"
+        run:  "${{ TAG }}"
+        env:
+          TAG: ./tags.sh ${{ steps.previoustag.outputs.tag }}
