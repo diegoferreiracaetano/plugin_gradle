@@ -132,44 +132,47 @@ class DependenciesPlugin : Plugin<Project> {
                 )
             )
 
-            project.tasks.withType<JacocoReport> {
-                group = "Reporting"
-                description =
-                    "Run tests and generate coverage report for instrumented and jvm testes"
-                dependsOn("testDebugUnitTest")
+            project.task("jacocoTestReport") {
 
-                reports {
-                    it.xml.isEnabled = true
-                    it.xml.destination =
-                        project.file("${project.rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml")
-                    it.html.isEnabled = true
-                }
+                project.tasks.withType<JacocoReport> {
+                    group = "Reporting"
+                    description =
+                        "Run tests and generate coverage report for instrumented and jvm testes"
+                    dependsOn("testDebugUnitTest")
 
-                classDirectories.from(project.files(listOf(javaTree, kotlinTree)))
+                    reports {
+                        it.xml.isEnabled = true
+                        it.xml.destination =
+                            project.file("${project.rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml")
+                        it.html.isEnabled = true
+                    }
 
-                val coverageSourceDirs = listOf("src/main/kotlin")
+                    classDirectories.from(project.files(listOf(javaTree, kotlinTree)))
 
-                additionalSourceDirs.from(project.files(coverageSourceDirs))
-                sourceDirectories.from(project.files(coverageSourceDirs))
+                    val coverageSourceDirs = listOf("src/main/kotlin")
 
-                executionData.from(
-                    project.fileTree(
-                        mapOf(
-                            "dir" to "$project.buildDir",
-                            "includes" to listOf(
-                                "jacoco/*.exec",
-                                "outputs/code_coverage/**/connected/*.ec",
-                                "tmp/tests/*.exec",
-                                "tmp/tests/*.ec"
+                    additionalSourceDirs.from(project.files(coverageSourceDirs))
+                    sourceDirectories.from(project.files(coverageSourceDirs))
+
+                    executionData.from(
+                        project.fileTree(
+                            mapOf(
+                                "dir" to "$project.buildDir",
+                                "includes" to listOf(
+                                    "jacoco/*.exec",
+                                    "outputs/code_coverage/**/connected/*.ec",
+                                    "tmp/tests/*.exec",
+                                    "tmp/tests/*.ec"
+                                )
                             )
                         )
                     )
-                )
 
-                executionData(project.tasks.withType<Test>())
+                    executionData(project.tasks.withType<Test>())
 
-                doLast {
-                    println("Jacoco report has been generated to file://${reports.html.destination}")
+                    doLast {
+                        println("Jacoco report has been generated to file://${reports.html.destination}")
+                    }
                 }
             }
         }
