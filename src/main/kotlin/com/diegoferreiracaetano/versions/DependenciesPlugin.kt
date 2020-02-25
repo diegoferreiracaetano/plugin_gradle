@@ -99,13 +99,13 @@ class DependenciesPlugin : Plugin<Project> {
                         isIncludeAndroidResources = true
                     }
                 }
-
-                jacoco.version = Versions.JACOCO
             }
 
         }
 
         project.configure<JacocoPluginExtension> {
+
+            toolVersion = Versions.JACOCO
 
             val fileFilter = listOf(
                 "**/R.class",
