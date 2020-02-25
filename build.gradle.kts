@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.1.6"
+version = "0.1.7"
 
 repositories {
     mavenCentral()
@@ -18,6 +18,7 @@ repositories {
 dependencies {
     implementation("com.android.tools.build:gradle:3.5.3")
     implementation("org.jacoco:org.jacoco.core:0.8.5")
+    implementation("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7")
     implementation(gradleKotlinDsl())
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")

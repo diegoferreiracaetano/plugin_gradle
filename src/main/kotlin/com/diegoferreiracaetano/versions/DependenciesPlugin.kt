@@ -17,6 +17,7 @@ import org.gradle.kotlin.dsl.task
 import org.gradle.kotlin.dsl.withType
 import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
+import org.sonarqube.gradle.SonarQubeExtension
 import java.io.File
 import java.io.FileInputStream
 import java.util.Properties
@@ -34,8 +35,7 @@ class DependenciesPlugin : Plugin<Project> {
             it.plugin("com.android.application")
             it.plugin("kotlin-android")
             it.plugin("kotlin-android-extensions")
-
-            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/sonar.gradle")
+            it.plugin("org.sonarqube")
 
             project.configure<AppExtension> {
                 signingConfigs {
@@ -211,6 +211,22 @@ class DependenciesPlugin : Plugin<Project> {
             classpath = ktlint
             main = "com.pinterest.ktlint.Main"
             args("--android", "-F", "src/**/*.kt")
+        }
+
+        // ######## sonar ##########
+
+        project.configure<SonarQubeExtension> {
+            androidVariant = "debug"
+
+            properties {
+                it.property("sonar.exclusions", "**/*Module.kt")
+                it.property(
+                    "sonar.coverage.jacoco.xmlReportPaths",
+                    "${project.rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml"
+                )
+                it.property("sonar.java.coveragePlugin", "jacoco")
+                it.property("sonar.android.lint.report", "build/outputs/lint-results.xml")
+            }
         }
     }
 }
