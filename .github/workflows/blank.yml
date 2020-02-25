@@ -11,5 +11,4 @@ jobs:
     - name: Gradle Android
     - uses: Raul6469/android-gradle-action@2.0.0
     - with:
-        script: ./gradlew assemble.
-        echo:  "execute asseble"
+        script: ./gradlew assemble
