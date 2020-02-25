@@ -193,8 +193,12 @@ class DependenciesPlugin : Plugin<Project> {
             group = "verification"
             description = "Check Kotlin code style."
             classpath = ktlint
-            main = "com.github.shyiko.ktlint.Main"
-            args("--android", "src/**/*.kt")
+            main = "com.pinterest.ktlint.Main"
+            args(
+                "--reporter=plain",
+                "--reporter=checkstyle,output=${project.buildDir}/ktlint.xml",
+                "src/**/*.kt"
+            )
         }
 
         project.tasks.named("check") {
@@ -205,7 +209,7 @@ class DependenciesPlugin : Plugin<Project> {
             group = "formatting"
             description = "Fix Kotlin code style deviations."
             classpath = ktlint
-            main = "com.github.shyiko.ktlint.Main"
+            main = "com.pinterest.ktlint.Main"
             args("--android", "-F", "src/**/*.kt")
         }
     }
