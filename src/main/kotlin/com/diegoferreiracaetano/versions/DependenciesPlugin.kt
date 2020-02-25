@@ -186,7 +186,7 @@ class DependenciesPlugin : Plugin<Project> {
         val ktlint by project.configurations.creating
 
         project.dependencies {
-            ktlint(Versions.KTLINT)
+            ktlint(LibsExtension().KTLINT)
         }
 
         project.task<JavaExec>("ktlint") {
