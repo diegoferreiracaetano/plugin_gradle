@@ -15,9 +15,19 @@ jobs:
       with:
         script: assemble
         
-    - name: Create a Release
-      uses: elgohr/Github-Release-Action@master
+    - name: Checkout code
+      uses: actions/checkout@master
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN_RELEASE }}
       with:
-        args: MyReleaseMessage
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+        draft: false
+        prerelease: false
