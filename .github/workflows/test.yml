@@ -23,4 +23,4 @@ jobs:
       - name: 'Get next minor version'
         run:  "$TAG"
         env:
-          TAG: ./tags.sh ${{ steps.previoustag.outputs.tag }}
+          TAG: ./tags.sh "1.0.0"
