@@ -8,15 +8,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
 
     - name: Run Gradle command
       uses: Raul6469/android-gradle-action@2.0.0
       with:
+        run: chmod +x ./gradlew
         script: assemble
-        
-    - name: Checkout code
-      uses: actions/checkout@master
+         
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
