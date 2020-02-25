@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Gradle Android
-        uses: Raul6469/android-gradle-action@2.0.0
-        with:
-          script: ./gradlew assemble
+    - uses: actions/checkout@v2
+      
+    - name: Run Gradle command
+      uses: Raul6469/android-gradle-action@2.0.0
+      with:
+        script: assemble
