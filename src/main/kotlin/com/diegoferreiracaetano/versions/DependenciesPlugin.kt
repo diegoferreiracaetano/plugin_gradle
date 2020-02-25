@@ -30,6 +30,7 @@ class DependenciesPlugin : Plugin<Project> {
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
 
         project.apply {
+            it.plugin("jacoco")
             it.plugin("com.android.application")
             it.plugin("kotlin-android")
             it.plugin("kotlin-android-extensions")
@@ -55,7 +56,6 @@ class DependenciesPlugin : Plugin<Project> {
                             it.storePassword = properties.getProperty("STORE_PASSWORD")
                             it.keyAlias = properties.getProperty("KEY_ALIAS")
                             it.keyPassword = properties.getProperty("KEY_PASSWORD")
-
                         } else {
                             it.storeFile = File("${project.rootDir}/debug.keystore")
                             it.storePassword = "android"
