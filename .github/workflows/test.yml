@@ -16,6 +16,13 @@ jobs:
     steps:
       - name: Moving build to artifacts directory
         run: |
+          chmod +x ./get_latest_release.sh
+           echo tags ./get_latest_release.sh
+      - name: Hello world
+        run: |
           chmod +x ./tags.sh
-          ./tags.sh
-
+          echo tags $FIRST_NAME
+        env:
+          FIRST_NAME: ./tags.sh
+          middle_name: The
+          Last_Name: Octocat
