@@ -9,8 +9,8 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.getByName
 import org.gradle.kotlin.dsl.withType
+import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
 import java.io.File
 import java.io.FileInputStream
@@ -103,8 +103,11 @@ class DependenciesPlugin : Plugin<Project> {
 
         }
 
+        project.configure<JacocoPluginExtension> {
+            toolVersion = Versions.JACOCO
+        }
 
-        project.tasks.getByName<JacocoReport>("jacocoTestReport") {
+        project.task("jacocoTestReport") {
 
             val fileFilter = listOf(
                 "**/R.class",
