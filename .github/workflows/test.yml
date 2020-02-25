@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Hello world
-        run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
+        run: echo curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r .tag_name
         env:
           FIRST_NAME: ${{ github.ref }}
           middle_name: The
