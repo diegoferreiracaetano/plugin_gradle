@@ -15,8 +15,8 @@ jobs:
 
     steps:
       - name: Hello world
-        run: echo curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r .tag_name
+        run: echo tags $FIRST_NAME
         env:
-          FIRST_NAME: ${{ github.ref }}
+          FIRST_NAME: curl -fsSLI -o /dev/null -w %{url_effective} https://github.com/hadolint/hadolint/releases/latest
           middle_name: The
           Last_Name: Octocat
