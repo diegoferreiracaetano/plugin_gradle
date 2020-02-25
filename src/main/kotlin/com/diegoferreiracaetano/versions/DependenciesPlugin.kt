@@ -10,7 +10,7 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
-import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
+import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
 import java.io.File
 import java.io.FileInputStream
@@ -105,12 +105,7 @@ class DependenciesPlugin : Plugin<Project> {
 
         }
 
-        project.configure<JacocoTaskExtension> {
-
-            project.tasks.withType<Test> {
-                this@configure.isIncludeNoLocationClasses = true
-                this@configure.excludes = listOf("jdk.internal.*")
-            }
+        project.configure<JacocoPluginExtension> {
 
             val fileFilter = listOf(
                 "**/R.class",
@@ -170,6 +165,8 @@ class DependenciesPlugin : Plugin<Project> {
                         )
                     )
                 )
+
+                executionData(project.tasks.withType<Test>())
 
                 doLast {
                     println("Jacoco report has been generated to file://${reports.html.destination}")
