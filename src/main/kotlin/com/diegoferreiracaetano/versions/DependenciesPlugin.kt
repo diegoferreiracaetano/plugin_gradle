@@ -9,8 +9,8 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.getByName
 import org.gradle.kotlin.dsl.withType
-import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
 import java.io.File
 import java.io.FileInputStream
@@ -104,76 +104,71 @@ class DependenciesPlugin : Plugin<Project> {
         }
 
 
-        project.task("jacocoTestReport") {
+        project.tasks.getByName<JacocoReport>("jacocoTestReport") {
 
-            project.configure<JacocoPluginExtension> {
+            val fileFilter = listOf(
+                "**/R.class",
+                "**/R$*.class",
+                "**/BuildConfig.*",
+                "**/Manifest*.*",
+                "**/*Test*.*",
+                "**/*Entity*.*",
+                "android/**/*.*",
+                "**/di/**"
+            )
 
-                toolVersion = Versions.JACOCO
-
-                val fileFilter = listOf(
-                    "**/R.class",
-                    "**/R$*.class",
-                    "**/BuildConfig.*",
-                    "**/Manifest*.*",
-                    "**/*Test*.*",
-                    "**/*Entity*.*",
-                    "android/**/*.*",
-                    "**/di/**"
+            val kotlinTree = project.fileTree(
+                mapOf(
+                    "dir" to "${project.buildDir}/tmp/kotlin-classes/debug",
+                    "excludes" to fileFilter
                 )
+            )
 
-                val kotlinTree = project.fileTree(
-                    mapOf(
-                        "dir" to "${project.buildDir}/tmp/kotlin-classes/debug",
-                        "excludes" to fileFilter
-                    )
+            val javaTree = project.fileTree(
+                mapOf(
+                    "dir" to "${project.buildDir}/intermediates/classes/debug",
+                    "excludes" to fileFilter
                 )
+            )
 
-                val javaTree = project.fileTree(
-                    mapOf(
-                        "dir" to "${project.buildDir}/intermediates/classes/debug",
-                        "excludes" to fileFilter
-                    )
-                )
+            project.tasks.withType<JacocoReport> {
+                group = "Reporting"
+                description =
+                    "Run tests and generate coverage report for instrumented and jvm testes"
+                dependsOn("testDebugUnitTest")
 
-                project.tasks.withType<JacocoReport> {
-                    group = "Reporting"
-                    description =
-                        "Run tests and generate coverage report for instrumented and jvm testes"
-                    dependsOn("testDebugUnitTest")
+                reports {
+                    it.xml.isEnabled = true
+                    it.xml.destination =
+                        project.file("${project.rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml")
+                    it.html.isEnabled = true
+                }
 
-                    reports {
-                        it.xml.isEnabled = true
-                        it.xml.destination =
-                            project.file("${project.rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml")
-                        it.html.isEnabled = true
-                    }
+                classDirectories.from(project.files(listOf(javaTree, kotlinTree)))
 
-                    classDirectories.from(project.files(listOf(javaTree, kotlinTree)))
+                val coverageSourceDirs = listOf("src/main/kotlin")
 
-                    val coverageSourceDirs = listOf("src/main/kotlin")
+                additionalSourceDirs.from(project.files(coverageSourceDirs))
+                sourceDirectories.from(project.files(coverageSourceDirs))
 
-                    additionalSourceDirs.from(project.files(coverageSourceDirs))
-                    sourceDirectories.from(project.files(coverageSourceDirs))
-
-                    executionData.from(
-                        project.fileTree(
-                            mapOf(
-                                "dir" to "$project.buildDir",
-                                "includes" to listOf(
-                                    "jacoco/*.exec",
-                                    "outputs/code_coverage/**/connected/*.ec",
-                                    "tmp/tests/*.exec",
-                                    "tmp/tests/*.ec"
-                                )
+                executionData.from(
+                    project.fileTree(
+                        mapOf(
+                            "dir" to "$project.buildDir",
+                            "includes" to listOf(
+                                "jacoco/*.exec",
+                                "outputs/code_coverage/**/connected/*.ec",
+                                "tmp/tests/*.exec",
+                                "tmp/tests/*.ec"
                             )
                         )
                     )
+                )
 
-                    executionData(project.tasks.withType<Test>())
+                executionData(project.tasks.withType<Test>())
 
-                    doLast {
-                        println("Jacoco report has been generated to file://${reports.html.destination}")
-                    }
+                doLast {
+                    println("Jacoco report has been generated to file://${reports.html.destination}")
                 }
             }
         }
