@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 declare -a part=( ${1//\./ } )
   declare    new
   declare -i carry=1
