@@ -15,7 +15,9 @@ jobs:
       with:
         script: assemble
         
-    - name: Github Release
-      uses: elgohr/Github-Release-Action@v3.1
+    - name: Create a Release
+      uses: elgohr/Github-Release-Action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        release: "teste"
+        args: MyReleaseMessage
