@@ -7,8 +7,12 @@ import com.diegoferreiracaetano.versions.dependencies.LibsExtension
 import com.diegoferreiracaetano.versions.dependencies.TestExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.tasks.JavaExec
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.creating
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.task
 import org.gradle.kotlin.dsl.withType
 import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
@@ -30,9 +34,8 @@ class DependenciesPlugin : Plugin<Project> {
             it.plugin("com.android.application")
             it.plugin("kotlin-android")
             it.plugin("kotlin-android-extensions")
+            it.plugin("org.jlleitschuh.gradle.ktlint")
 
-            it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/ktlint.gradle")
-            //it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/jacoco.gradle")
             it.from("https://raw.githubusercontent.com/diegoferreiracaetano/plugin_gradle/master/tools/sonar.gradle")
 
             project.configure<AppExtension> {
@@ -103,6 +106,8 @@ class DependenciesPlugin : Plugin<Project> {
             }
 
         }
+
+        // ######## JaCoCo ##########
 
         project.configure<JacocoPluginExtension> {
             toolVersion = Versions.JACOCO
@@ -176,6 +181,34 @@ class DependenciesPlugin : Plugin<Project> {
                     println("Jacoco report has been generated to file://${reports.html.destination}")
                 }
             }
+        }
+
+        // ######## ktlint ##########
+
+        val ktlint by project.configurations.creating
+
+        project.dependencies {
+            ktlint(Versions.KTLINT)
+        }
+
+        project.task<JavaExec>("ktlint") {
+            group = "verification"
+            description = "Check Kotlin code style."
+            classpath = ktlint
+            main = "com.github.shyiko.ktlint.Main"
+            args("--android", "src/**/*.kt")
+        }
+
+        project.tasks.named("check") {
+            it.dependsOn(ktlint)
+        }
+
+        project.task<JavaExec>("ktlintFormat") {
+            group = "formatting"
+            description = "Fix Kotlin code style deviations."
+            classpath = ktlint
+            main = "com.github.shyiko.ktlint.Main"
+            args("--android", "-F", "src/**/*.kt")
         }
     }
 }

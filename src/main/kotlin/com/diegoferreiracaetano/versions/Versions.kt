@@ -37,4 +37,5 @@ object Versions {
     const val FLOW_ADAPTER = "0.2.0"
     const val WORKMANAGER = "2.3.0-alpha01"
     const val MAPS = "17.0.0"
+    const val KTLINT = "0.34.2"
 }
