@@ -1,6 +1,12 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -11,12 +17,11 @@ jobs:
     - name: Checkout master
       uses: actions/checkout@master
 
-    - name: setup-android
-      uses: msfjarvis/setup-android@0.2
+    - name: Create Build
+      uses: Raul6469/android-gradle-action@2.0.0
       with:
         run: chmod +x ./gradlew
-        entrypoint: ./gradlew
-        args: assemble
+        script: assemble
          
     - name: Create Release
       id: create_release
