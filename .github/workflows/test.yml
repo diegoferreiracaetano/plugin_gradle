@@ -22,5 +22,5 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: 'Get next minor version'
         run: |
-          chmod 777 /ci/tags.sh
-          sh ./ci/tags.sh
+          chmod 777 /scripts/tags.sh
+          sh ./scripts/tags.sh
