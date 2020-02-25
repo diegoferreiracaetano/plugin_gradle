@@ -9,8 +9,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      
+
     - name: Run Gradle command
       uses: Raul6469/android-gradle-action@2.0.0
       with:
         script: assemble
+        
+    - name: Github Release
+      uses: elgohr/Github-Release-Action@v3.1
+      with:
+        release: "teste"
