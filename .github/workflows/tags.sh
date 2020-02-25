@@ -1,6 +1,4 @@
-increment_version ()
-{
-  declare -a part=( ${1//\./ } )
+declare -a part=( ${1//\./ } )
   declare    new
   declare -i carry=1
 
@@ -12,4 +10,3 @@ increment_version ()
   done
   new="${part[*]}"
   echo -e "${new// /.}"
-} 
