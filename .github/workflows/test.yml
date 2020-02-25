@@ -14,9 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Hello world
-        run: echo tags $FIRST_NAME
-        env:
-          FIRST_NAME: curl -fsSLI -o /dev/null -w %{url_effective} https://github.com/hadolint/hadolint/releases/latest
-          middle_name: The
-          Last_Name: Octocat
+      - name: Moving build to artifacts directory
+        run: |
+          chmod +x ./get_latest_release.sh
+          echo tags ./get_latest_release.sh
