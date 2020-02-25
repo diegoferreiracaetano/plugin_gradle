@@ -16,5 +16,5 @@ jobs:
     steps:
       - name: Moving build to artifacts directory
         run: |
-          echo sh ./scripts/moveFile.sh
+          echo sh ./tags.sh
 
