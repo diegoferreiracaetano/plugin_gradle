@@ -1,5 +1,15 @@
-get_latest_release() {
-  curl --silent "https://api.github.com/repos/$1/releases/latest" |
-    grep '"tag_name":' |
-    sed -E 's/.*"([^"]+)".*/\1/'
-}
+increment_version ()
+{
+  declare -a part=( ${1//\./ } )
+  declare    new
+  declare -i carry=1
+
+  for (( CNTR=${#part[@]}-1; CNTR>=0; CNTR-=1 )); do
+    len=${#part[CNTR]}
+    new=$((part[CNTR]+carry))
+    [ ${#new} -gt $len ] && carry=1 || carry=0
+    [ $CNTR -gt 0 ] && part[CNTR]=${new: -len} || part[CNTR]=${new}
+  done
+  new="${part[*]}"
+  echo -e "${new// /.}"
+} 
