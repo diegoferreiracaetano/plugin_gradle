@@ -20,4 +20,7 @@ jobs:
         uses: "WyriHaximus/github-action-get-previous-tag@master"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        run: echo  ${{ steps.previoustag.outputs.tag }}
+      - name: 'Get next minor version'
+        id: semvers
+        uses: "WyriHaximus/github-action-next-semvers@master"
+        run: ${{ steps.previoustag.outputs.tag }}
