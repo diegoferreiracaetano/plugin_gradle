@@ -103,36 +103,37 @@ class DependenciesPlugin : Plugin<Project> {
 
         }
 
-        project.configure<JacocoPluginExtension> {
 
-            toolVersion = Versions.JACOCO
+        project.task("jacocoTestReport") {
 
-            val fileFilter = listOf(
-                "**/R.class",
-                "**/R$*.class",
-                "**/BuildConfig.*",
-                "**/Manifest*.*",
-                "**/*Test*.*",
-                "**/*Entity*.*",
-                "android/**/*.*",
-                "**/di/**"
-            )
+            project.configure<JacocoPluginExtension> {
 
-            val kotlinTree = project.fileTree(
-                mapOf(
-                    "dir" to "${project.buildDir}/tmp/kotlin-classes/debug",
-                    "excludes" to fileFilter
+                toolVersion = Versions.JACOCO
+
+                val fileFilter = listOf(
+                    "**/R.class",
+                    "**/R$*.class",
+                    "**/BuildConfig.*",
+                    "**/Manifest*.*",
+                    "**/*Test*.*",
+                    "**/*Entity*.*",
+                    "android/**/*.*",
+                    "**/di/**"
                 )
-            )
 
-            val javaTree = project.fileTree(
-                mapOf(
-                    "dir" to "${project.buildDir}/intermediates/classes/debug",
-                    "excludes" to fileFilter
+                val kotlinTree = project.fileTree(
+                    mapOf(
+                        "dir" to "${project.buildDir}/tmp/kotlin-classes/debug",
+                        "excludes" to fileFilter
+                    )
                 )
-            )
 
-            project.task("jacocoTestReport") {
+                val javaTree = project.fileTree(
+                    mapOf(
+                        "dir" to "${project.buildDir}/intermediates/classes/debug",
+                        "excludes" to fileFilter
+                    )
+                )
 
                 project.tasks.withType<JacocoReport> {
                     group = "Reporting"
