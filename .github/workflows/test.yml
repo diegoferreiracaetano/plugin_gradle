@@ -21,6 +21,5 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: 'Get next minor version'
-        run: |
-          chmod 777 "$HOME/scripts/tags.sh"
-          sh ./$HOME/scripts/tags.sh
+        with:
+          script: .github/tags.sh
