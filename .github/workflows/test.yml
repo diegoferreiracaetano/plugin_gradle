@@ -22,4 +22,6 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: 'Get next minor version'
         shell: bash
-        run: echo $.github/tags.sh version 1.0.0
+        run: |
+          local res=$($.github/tags.sh 1.0.0)
+          echo res
