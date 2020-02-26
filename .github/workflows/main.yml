@@ -14,10 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: setuo init
-      run:
-        chmod +x ./gradlew
-        chmod +x .github/tags.sh
 
     - name: Checkout
       uses: actions/checkout@v1
@@ -25,6 +21,8 @@ jobs:
     - name: Create Build
       uses: Raul6469/android-gradle-action@2.0.0
       with:
+        run:
+          chmod +x ./gradlew
         script: assemble
 
     - name: Get Last Tag
