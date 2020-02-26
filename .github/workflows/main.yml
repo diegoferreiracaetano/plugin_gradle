@@ -35,6 +35,7 @@ jobs:
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TAG: ${{ TAG }}
       with:
         run: |
           chmod +x .github/tags.sh
