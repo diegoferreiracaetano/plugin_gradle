@@ -32,7 +32,7 @@ jobs:
     - name: Set New Tag
       shell: bash
       run: |
-        export TAG=$(sh .github/tags.sh ${{steps.previoustag.outputs.tag }})
+        export TAG=$(chmod +x .github/tags.sh ${{steps.previoustag.outputs.tag }})
         echo $TAG
 
     - name: Create Release
