@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
     - name: Checkout
       uses: actions/checkout@v1
 
@@ -35,7 +34,7 @@ jobs:
       shell: bash
       run: |
         chmod +x .github/tags.sh
-        TAG=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
+        export TAG=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
         echo $TAG
 
     - name: Create Release
