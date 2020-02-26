@@ -41,8 +41,8 @@ jobs:
           chmod +x .github/tags.sh
           res=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
           echo $res
-        tag_name: echo $TAG
-        release_name: echo $TAG
+        tag_name: echo $res
+        release_name: echo $res
         body: |
             Changes in this Release
             - First Change
