@@ -22,4 +22,6 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: 'Get next minor version'
         shell: bash
-        run: echo VARNAME="my value"
+        run: echo VARNAME
+        env:
+          VARNAME="my value"
