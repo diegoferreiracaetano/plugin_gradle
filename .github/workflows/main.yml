@@ -14,12 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup
-        run: |
+    - name: Setup
+      run: |
           chmod +x ./gradlew
           chmod +x .github/tags.sh
 
-      - name: Checkout
+    - name: Checkout
       uses: actions/checkout@v1
 
     - name: Create Build
