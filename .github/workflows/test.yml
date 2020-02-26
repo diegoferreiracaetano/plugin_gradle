@@ -24,5 +24,4 @@ jobs:
         shell: bash
         run: echo $TAG
         env:
-          res=$(.github/tags.sh 1.0.0)
-          TAG: $res
+          TAG: res=$(.github/tags.sh 1.0.0)
