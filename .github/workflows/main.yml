@@ -14,15 +14,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+      - name: Setup
+        run: |
+          chmod +x ./gradlew
+          chmod +x .github/tags.sh
+
+      - name: Checkout
       uses: actions/checkout@v1
 
     - name: Create Build
       uses: Raul6469/android-gradle-action@2.0.0
       with:
-        run:
-          chmod +x ./gradlew
-          chmod +x .github/tags.sh
         script: assemble
 
     - name: Get Last Tag
@@ -30,7 +32,6 @@ jobs:
       uses: WyriHaximus/github-action-get-previous-tag@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
     - name: Create Release
       shell: bash
