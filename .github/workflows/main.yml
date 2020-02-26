@@ -43,8 +43,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         shell: bash
-        tag_name: $(.github/tags.sh ${{steps.previoustag.outputs.tag }})
-        release_name: $(.github/tags.sh ${{steps.previoustag.outputs.tag }})
+        run: export TAG=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
+        tag_name: $TAG
+        release_name: $TAG
         body: |
             Changes in this Release
             - First Change
