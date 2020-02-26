@@ -37,8 +37,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TAG_TEST: $(.github/tags.sh ${{steps.previoustag.outputs.tag }})
       with:
-        tag_name: ${{ TAG_TEST }}
-        release_name: $( TAG )
+        tag_name: $( TAG_TEST )
+        release_name: $( TAG_TEST )
         body: |
             Changes in this Release
             - First Change
