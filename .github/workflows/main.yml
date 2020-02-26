@@ -23,7 +23,7 @@ jobs:
       run: |
         chmod +x ./gradlew
         chmod +x .github/tags.sh
-        script: assemble
+      script: assemble
 
     - name: Get Last Tag
       id: previoustag
