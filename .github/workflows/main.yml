@@ -41,8 +41,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         uses: actions/create-release@v1
-        tag_name: $( TAG )
-        release_name: $( TAG )
+        tag_name: $TAG
+        release_name: $TAG
         body: |
             Changes in this Release
             - First Change
