@@ -22,15 +22,24 @@ jobs:
       with:
         run: chmod +x ./gradlew
         script: assemble
-         
+
+    - name: 'Get next minor version'
+      uses: "WyriHaximus/github-action-get-previous-tag@master"
+      env:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      shell: bash
+      run: |
+        export TAG=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
+        echo $TAG
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        tag_name: 0.1.20
-        release_name: 0.1.20
+        tag_name: $TAG
+        release_name: $TAG
         body: |
             Changes in this Release
             - First Change
