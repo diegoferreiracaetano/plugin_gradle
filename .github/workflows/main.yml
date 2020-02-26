@@ -42,8 +42,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: $TAG
-        release_name: $TAG
+        shell: bash
+        tag_name: $(.github/tags.sh ${{steps.previoustag.outputs.tag }})
+        release_name: $(.github/tags.sh ${{steps.previoustag.outputs.tag }})
         body: |
             Changes in this Release
             - First Change
