@@ -20,7 +20,9 @@ jobs:
     - name: Create Build
       uses: Raul6469/android-gradle-action@2.0.0
       with:
-        run: chmod +x ./gradlew
+        run: |
+        chmod +x ./gradlew
+        chmod +x .github/tags.sh
         script: assemble
 
     - name: Get Last Tag
@@ -29,21 +31,15 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Set New Tag
-      shell: bash
-      run: |
-        chmod +x .github/tags.sh
-        export TAG=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
-        echo $TAG
-
     - name: Create Release
+      shell: bash
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: echp $(.github/tags.sh ${{steps.previoustag.outputs.tag }})
-        release_name: echo $(.github/tags.sh ${{steps.previoustag.outputs.tag }})
+        tag_name: $(.github/tags.sh ${{steps.previoustag.outputs.tag }})
+        release_name: $(.github/tags.sh ${{steps.previoustag.outputs.tag }})
         body: |
             Changes in this Release
             - First Change
