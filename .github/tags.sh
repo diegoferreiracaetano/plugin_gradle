@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-declare -a part=( ${1//\./ } )
+function version() {
+ declare -a part=( ${1//\./ } )
   declare    new
   declare -i carry=1
 
@@ -11,4 +12,5 @@ declare -a part=( ${1//\./ } )
     [ $CNTR -gt 0 ] && part[CNTR]=${new: -len} || part[CNTR]=${new}
   done
   new="${part[*]}"
-return new
+ return -e "${new// /.}"
+}
