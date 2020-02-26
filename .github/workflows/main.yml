@@ -35,12 +35,13 @@ jobs:
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TAG_TEST: "E"
       with:
         run: |
           export TAG=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
           echo $TAG
-        tag_name: ${{ TAG }}
-        release_name: ${{ TAG }}
+        tag_name: ${{ TAG_TEST }}
+        release_name: $( TAG )
         body: |
             Changes in this Release
             - First Change
