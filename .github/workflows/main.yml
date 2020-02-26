@@ -32,8 +32,9 @@ jobs:
 
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
-      run: export TAG=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
+      run: |
+        actions/create-release@v1
+        export TAG=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
