@@ -35,9 +35,10 @@ jobs:
       id: create_release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TAG: TEST
       with:
         tag_name: echo "$TAG"
-        release_name: "$TAG"
+        release_name: "$TAG_T"
         body: |
             Changes in this Release
             - First Change
