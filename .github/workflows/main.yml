@@ -17,12 +17,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
-    - name: Create Build
-      uses: Raul6469/android-gradle-action@2.0.0
-      with:
-        run: chmod +x ./gradlew
-        script: assemble
-
     - name: Get Last Tag
       id: previoustag
       uses: WyriHaximus/github-action-get-previous-tag@master
@@ -44,8 +38,8 @@ jobs:
       with:
         shell: bash
         run: export TAG=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
-        tag_name: $TAG
-        release_name: $TAG
+        tag_name: echo $TAG
+        release_name: echo $TAG
         body: |
             Changes in this Release
             - First Change
