@@ -38,8 +38,8 @@ jobs:
       with:
         run: |
           chmod +x .github/tags.sh
-          export TAG=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
-          echo $TAG
+          res=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
+          echo $res
         tag_name: echo $TAG
         release_name: echo $TAG
         body: |
