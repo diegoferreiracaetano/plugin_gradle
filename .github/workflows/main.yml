@@ -35,7 +35,7 @@ jobs:
       id: create_release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TAG: TEST
+        TAG: echo $(.github/tags.sh ${{steps.previoustag.outputs.tag }})
       with:
         tag_name: echo "$TAG"
         release_name: "$TAG_T"
