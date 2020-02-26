@@ -24,4 +24,4 @@ jobs:
         shell: bash
         run: echo Hello world $TAG
         env:
-          TAG = github/tags.sh 1.0.0
+          TAG: ${{ github/tags.sh 1.0.0 }}
