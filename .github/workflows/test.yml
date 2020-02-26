@@ -24,4 +24,4 @@ jobs:
         shell: bash
         run: |
           res=$(.github/tags.sh 1.0.0)
-          echo res
+          echo $res
