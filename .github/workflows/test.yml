@@ -23,7 +23,6 @@ jobs:
       - name: 'Get next minor version'
         shell: bash
         run: |
-          $VERSION=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
-          echo $VERSION
-        env:
-          VERSION: ""
+          export VAR=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
+          echo $var
+
