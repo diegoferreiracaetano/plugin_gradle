@@ -28,7 +28,7 @@ jobs:
       run: |
         chmod +x .github/tags.sh
         export TAG=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
-        echo "::set-output name=TAG::$TAG"
+        echo "::set-env name=TAG::$TAG"
 
     - name: Create Release
       uses: actions/create-release@v1
@@ -36,7 +36,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: $TAG
+        tag_name: ${{ TAG }}
         release_name: echo ${ TAG }
         body: |
             Changes in this Release
