@@ -33,11 +33,11 @@ jobs:
     - name: Create Release
       shell: bash
       id: create_release
-      uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TAG_TEST: $(.github/tags.sh ${{steps.previoustag.outputs.tag }})<
       with:
+        uses: actions/create-release@v1
         tag_name: $( TAG_TEST )
         release_name: $( TAG_TEST )
         body: |
