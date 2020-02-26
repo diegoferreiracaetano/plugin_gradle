@@ -23,5 +23,5 @@ jobs:
       - name: 'Get next minor version'
         shell: bash
         run: |
-          local res=$($.github/tags.sh 1.0.0)
+          res=$($.github/tags.sh 1.0.0)
           echo res
