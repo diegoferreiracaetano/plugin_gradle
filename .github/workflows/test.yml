@@ -24,4 +24,7 @@ jobs:
         shell: bash
         run: |
           res=$(.github/tags.sh ${{steps.previoustag.outputs.tag }})
-          echo $res
+          $VERSION = $res
+          echo $VERSION
+        env:
+          VERSION: ""
