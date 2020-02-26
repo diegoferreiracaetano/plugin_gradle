@@ -11,4 +11,4 @@ declare -a part=( ${1//\./ } )
     [ $CNTR -gt 0 ] && part[CNTR]=${new: -len} || part[CNTR]=${new}
   done
   new="${part[*]}"
-return "${new// /.}"
+return new
