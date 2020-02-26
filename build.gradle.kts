@@ -13,12 +13,14 @@ repositories {
     mavenCentral()
     jcenter()
     google()
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 dependencies {
     implementation("com.android.tools.build:gradle:3.5.3")
     implementation("org.jacoco:org.jacoco.core:0.8.5")
     implementation("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7")
+    implementation("com.github.triplet.gradle:play-publisher:2.4.0-SNAPSHOT")
     implementation(gradleKotlinDsl())
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")

@@ -5,6 +5,7 @@ import com.diegoferreiracaetano.versions.dependencies.AndroidTestExtension
 import com.diegoferreiracaetano.versions.dependencies.Dependencies
 import com.diegoferreiracaetano.versions.dependencies.LibsExtension
 import com.diegoferreiracaetano.versions.dependencies.TestExtension
+import com.github.triplet.gradle.play.PlayPublisherExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.JavaExec
@@ -18,7 +19,6 @@ import org.gradle.kotlin.dsl.withType
 import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
 import org.sonarqube.gradle.SonarQubeExtension
-import java.io.File
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -41,23 +41,23 @@ class DependenciesPlugin : Plugin<Project> {
                 signingConfigs {
 
                     it.register("customDebug") {
-                        it.storeFile = File("/debug.keystore")
+                        it.storeFile = project.file("/debug.keystore")
                         it.storePassword = "android"
                         it.keyAlias = "androiddebugkey"
                         it.keyPassword = "android"
                     }
 
                     it.register("release") {
-                        if (File("../signing.properties").canRead()) {
+                        if (project.file("../signing.properties").canRead()) {
                             val properties = Properties()
                             properties.load(FileInputStream("../signing.properties"))
 
-                            it.storeFile = File(properties.getProperty("STORE_FILE"))
+                            it.storeFile = project.file(properties.getProperty("STORE_FILE"))
                             it.storePassword = properties.getProperty("STORE_PASSWORD")
                             it.keyAlias = properties.getProperty("KEY_ALIAS")
                             it.keyPassword = properties.getProperty("KEY_PASSWORD")
                         } else {
-                            it.storeFile = File("${project.rootDir}/debug.keystore")
+                            it.storeFile = project.file("${project.rootDir}/debug.keystore")
                             it.storePassword = "android"
                             it.keyAlias = "androiddebugkey"
                             it.keyPassword = "android"
@@ -102,7 +102,6 @@ class DependenciesPlugin : Plugin<Project> {
                     }
                 }
             }
-
         }
 
         // ######## JaCoCo ##########
@@ -226,6 +225,18 @@ class DependenciesPlugin : Plugin<Project> {
                 )
                 it.property("sonar.java.coveragePlugin", "jacoco")
                 it.property("sonar.android.lint.report", "build/outputs/lint-results.xml")
+            }
+        }
+
+        // ######## play ##########
+
+        if (project.file("upload.json").exists()) {
+            project.configure<PlayPublisherExtension> {
+
+                serviceAccountCredentials = project.file("upload.json")
+                resolutionStrategy = "auto"
+                defaultToAppBundles = true
+                track = "internal"
             }
         }
     }
