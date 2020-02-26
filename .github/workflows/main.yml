@@ -38,9 +38,9 @@ jobs:
         echo $TAG
 
     - name: Create Release
-      shell: bash
       id: create_release
       uses: actions/create-release@v1
+      shell: bash
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
