@@ -23,7 +23,5 @@ jobs:
       - name: 'Get next minor version'
         shell: bash
         run: |
-          res=$(.github/tags.sh 1.0.0)
-          echo $TAG
-        env:
-          TAG: $res
+          res=${{ .github/tags.sh steps.previoustag.outputs.tag }}
+          echo $res
