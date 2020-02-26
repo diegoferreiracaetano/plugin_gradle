@@ -42,8 +42,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{TAG}}
-        release_name: ${{TAG}}
+        tag_name: echp $TAG
+        release_name: echo $TAG
         body: |
             Changes in this Release
             - First Change
