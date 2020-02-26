@@ -24,4 +24,4 @@ jobs:
         shell: bash
         run: echo VARNAME
         env:
-          VARNAME="my value"
+          VARNAME: "my value"
