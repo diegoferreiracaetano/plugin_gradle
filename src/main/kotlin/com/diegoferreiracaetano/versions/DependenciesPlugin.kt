@@ -101,6 +101,8 @@ class DependenciesPlugin : Plugin<Project> {
                         isIncludeAndroidResources = true
                     }
                 }
+
+                jacoco.version = Versions.JACOCO
             }
         }
 
@@ -163,7 +165,7 @@ class DependenciesPlugin : Plugin<Project> {
                         mapOf(
                             "dir" to "${project.buildDir}",
                             "includes" to listOf(
-                                "jacoco/testDebugUnitTest.exec",
+                                "jacoco/*.exec",
                                 "outputs/code_coverage/**/connected/*.ec",
                                 "tmp/tests/*.exec",
                                 "tmp/tests/*.ec"
