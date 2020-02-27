@@ -9,6 +9,7 @@ import com.github.triplet.gradle.play.PlayPublisherExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.JavaExec
+import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.dependencies
@@ -107,6 +108,8 @@ class DependenciesPlugin : Plugin<Project> {
 
         // ######## JaCoCo ##########
 
+        // ######## JaCoCo ##########
+
         project.configure<JacocoPluginExtension> {
             toolVersion = Versions.JACOCO
         }
@@ -162,14 +165,18 @@ class DependenciesPlugin : Plugin<Project> {
                 executionData.from(
                     project.fileTree(
                         mapOf(
-                            "dir" to "${project.buildDir}",
+                            "dir" to "$project.buildDir",
                             "includes" to listOf(
-                                "jacoco/testDebugUnitTest.exec",
-                                "outputs/code-coverage/connected/*coverage.ec"
+                                "jacoco/*.exec",
+                                "outputs/code_coverage/**/connected/*.ec",
+                                "tmp/tests/*.exec",
+                                "tmp/tests/*.ec"
                             )
                         )
                     )
                 )
+
+                executionData(project.tasks.withType<Test>())
 
                 doLast {
                     println("Jacoco report has been generated to file://${reports.html.destination}")
