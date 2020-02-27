@@ -161,7 +161,7 @@ class DependenciesPlugin : Plugin<Project> {
                 executionData.from(
                     project.fileTree(
                         mapOf(
-                            "dir" to "$project.buildDir",
+                            "dir" to "${project.buildDir}",
                             "includes" to listOf(
                                 "jacoco/*.exec",
                                 "outputs/code_coverage/**/connected/*.ec",
