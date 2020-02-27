@@ -163,7 +163,7 @@ class DependenciesPlugin : Plugin<Project> {
                         mapOf(
                             "dir" to "${project.buildDir}",
                             "includes" to listOf(
-                                "jacoco/*.exec",
+                                "jacoco/testDebugUnitTest.exec",
                                 "outputs/code_coverage/**/connected/*.ec",
                                 "tmp/tests/*.exec",
                                 "tmp/tests/*.ec"
