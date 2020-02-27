@@ -174,7 +174,7 @@ class DependenciesPlugin : Plugin<Project> {
                     )
                 )
 
-                executionData(project.tasks.withType<Test>())
+                executionData.from(project.tasks.withType<Test>())
 
                 doLast {
                     println("Jacoco report has been generated to file://${reports.html.destination}")
