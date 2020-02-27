@@ -3,7 +3,7 @@ package com.diegoferreiracaetano.versions
 object AndroidConfig {
 
     const val APPLICATION_ID = "com.diegoferreiracaetano.driver"
-    const val COMPILE_SDK = 29
+    const val COMPILE_SDK = 28
     const val MIN_SDK = 21
     const val TARGET_SDK = COMPILE_SDK
     const val JAVA_VERSION = 1.8
