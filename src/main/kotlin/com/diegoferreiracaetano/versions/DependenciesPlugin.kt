@@ -18,7 +18,6 @@ import org.gradle.kotlin.dsl.delegateClosureOf
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.task
-import org.gradle.kotlin.dsl.withType
 import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
 import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
@@ -197,9 +196,6 @@ class DependenciesPlugin : Plugin<Project> {
                     )
                 )
             )
-
-            executionData.from(project.tasks.withType<Test>())
-
 
             doLast {
                 println("Jacoco report has been generated to file://${reports.html.destination}")
