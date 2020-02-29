@@ -128,8 +128,6 @@ class DependenciesPlugin : Plugin<Project> {
                     })
                     it.execution = "ANDROIDX_TEST_ORCHESTRATOR"
                 }
-
-                jacoco.version = Versions.JACOCO
             }
         }
 
