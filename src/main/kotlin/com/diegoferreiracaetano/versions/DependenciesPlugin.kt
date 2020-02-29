@@ -10,8 +10,6 @@ import com.github.triplet.gradle.play.PlayPublisherExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.JavaExec
-import org.gradle.api.tasks.testing.Test
-import org.gradle.kotlin.dsl.KotlinClosure1
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.delegateClosureOf
@@ -19,7 +17,6 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.task
 import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
-import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
 import org.sonarqube.gradle.SonarQubeExtension
 import java.io.FileInputStream
@@ -117,13 +114,6 @@ class DependenciesPlugin : Plugin<Project> {
                     it.unitTests(delegateClosureOf<TestOptions.UnitTestOptions> {
                         isReturnDefaultValues = true
                         isIncludeAndroidResources = true
-                        all(KotlinClosure1<Any, Test>({
-                            (this as Test).also { testTask ->
-                                testTask.extensions
-                                    .getByType(JacocoTaskExtension::class.java)
-                                    .isIncludeNoLocationClasses = true
-                            }
-                        }, this))
                     })
                     it.execution = "ANDROIDX_TEST_ORCHESTRATOR"
                 }
