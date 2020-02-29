@@ -72,6 +72,9 @@ class DependenciesPlugin : Plugin<Project> {
 
                 Versions.versionsApp().forEach { (s, list) ->
 
+                    println("Project name ://${project.name}")
+
+
                     if (project.name == s) {
                         defaultConfig {
                             it.minSdkVersion(AndroidConfig.MIN_SDK)
