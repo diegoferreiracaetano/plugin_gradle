@@ -1,6 +1,6 @@
 package com.diegoferreiracaetano.versions
 
-import com.android.build.gradle.AppExtension
+import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.internal.dsl.TestOptions
 import com.diegoferreiracaetano.versions.dependencies.AndroidTestExtension
 import com.diegoferreiracaetano.versions.dependencies.Dependencies
@@ -34,13 +34,18 @@ class DependenciesPlugin : Plugin<Project> {
         project.extensions.create("ANDROID_TEST", AndroidTestExtension::class.java)
 
         project.apply {
+
+            if (project.name == "app")
+                it.plugin("com.android.application")
+            else
+                it.plugin("com.android.library")
+
             it.plugin("jacoco")
-            it.plugin("com.android.application")
             it.plugin("kotlin-android")
             it.plugin("kotlin-android-extensions")
             it.plugin("org.sonarqube")
 
-            project.configure<AppExtension> {
+            project.configure<BaseExtension> {
                 signingConfigs {
 
                     it.register("customDebug") {
