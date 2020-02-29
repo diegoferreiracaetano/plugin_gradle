@@ -4,7 +4,6 @@ import org.gradle.api.JavaVersion.VERSION_1_8
 
 object AndroidConfig {
 
-    const val APPLICATION_ID = "com.diegoferreiracaetano.driver"
     const val COMPILE_SDK = 28
     const val MIN_SDK = 21
     const val TARGET_SDK = COMPILE_SDK
@@ -17,16 +16,4 @@ object Source {
     const val ANDROID_TEST = "src/androidTest/kotlin"
     const val SHARED_TEST = "src/sharedTest/kotlin"
     const val SHARED_TEST_RESOURCES = "src/sharedTest/resources"
-}
-
-object App {
-    const val NAME = "app"
-    const val VERSION_NAME = "0.0.1"
-    const val VERSION_CODE = 1
-}
-
-object Style {
-    const val NAME = "style"
-    const val VERSION_NAME = "0.0.1"
-    const val VERSION_CODE = 1
 }

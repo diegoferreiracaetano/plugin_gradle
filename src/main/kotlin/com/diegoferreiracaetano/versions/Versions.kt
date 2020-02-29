@@ -39,11 +39,8 @@ object Versions {
     const val MAPS = "17.0.0"
     const val KTLINT = "0.34.2"
 
-    fun versionsApp(): Map<String, Pair<Int, String>> {
-        val map = hashMapOf<String, Pair<Int, String>>()
-        map[App.NAME] = Pair(App.VERSION_CODE, App.VERSION_NAME)
-        map[Style.NAME] = Pair(Style.VERSION_CODE, Style.VERSION_NAME)
-
-        return map
+    object Modules {
+        val APP = ModuleConfig.app.versionName
+        val STYLE = ModuleConfig.style.versionName
     }
 }
