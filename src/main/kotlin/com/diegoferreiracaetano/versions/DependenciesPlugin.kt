@@ -1,6 +1,7 @@
 package com.diegoferreiracaetano.versions
 
 import com.android.build.gradle.AppExtension
+import com.android.build.gradle.internal.dsl.TestOptions
 import com.diegoferreiracaetano.versions.dependencies.AndroidTestExtension
 import com.diegoferreiracaetano.versions.dependencies.Dependencies
 import com.diegoferreiracaetano.versions.dependencies.LibsExtension
@@ -10,13 +11,15 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.JavaExec
 import org.gradle.api.tasks.testing.Test
+import org.gradle.kotlin.dsl.KotlinClosure1
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.creating
+import org.gradle.kotlin.dsl.delegateClosureOf
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.task
-import org.gradle.kotlin.dsl.withType
 import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
+import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
 import org.sonarqube.gradle.SonarQubeExtension
 import java.io.FileInputStream
@@ -108,17 +111,46 @@ class DependenciesPlugin : Plugin<Project> {
                     }
                 }
 
+
+                testOptions {
+                    it.animationsDisabled = true
+                    it.unitTests(delegateClosureOf<TestOptions.UnitTestOptions> {
+                        isReturnDefaultValues = true
+                        isIncludeAndroidResources = true
+                        all(KotlinClosure1<Any, Test>({
+                            (this as Test).also { testTask ->
+                                testTask.extensions
+                                    .getByType(JacocoTaskExtension::class.java)
+                                    .isIncludeNoLocationClasses = true
+                            }
+                        }, this))
+                    })
+                    it.execution = "ANDROIDX_TEST_ORCHESTRATOR"
+                }
+
                 jacoco.version = Versions.JACOCO
             }
         }
 
         // ######## JaCoCo ##########
 
+
         project.configure<JacocoPluginExtension> {
             toolVersion = Versions.JACOCO
         }
 
         project.task<JacocoReport>("jacocoTestReport") {
+
+            group = "Reporting"
+            description = "Run tests and generate coverage report for instrumented and jvm testes"
+            dependsOn("testDebugUnitTest")
+
+            reports {
+                it.xml.isEnabled = true
+                it.xml.destination =
+                    project.file("${project.rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml")
+                it.html.isEnabled = true
+            }
 
             val fileFilter = listOf(
                 "**/R.class",
@@ -146,46 +178,32 @@ class DependenciesPlugin : Plugin<Project> {
             )
 
 
-            project.tasks.withType<JacocoReport> {
-                group = "Reporting"
-                description =
-                    "Run tests and generate coverage report for instrumented and jvm testes"
-                dependsOn("testDebugUnitTest")
+            classDirectories.from(project.files(listOf(javaTree, kotlinTree)))
 
-                reports {
-                    it.xml.isEnabled = true
-                    it.xml.destination =
-                        project.file("${project.rootProject.buildDir}/reports/${project.name}/jacocoTestReport.xml")
-                    it.html.isEnabled = true
-                }
+            val coverageSourceDirs = listOf("src/main/kotlin")
 
-                classDirectories.from(project.files(listOf(javaTree, kotlinTree)))
+            additionalSourceDirs.from(project.files(coverageSourceDirs))
+            sourceDirectories.from(project.files(coverageSourceDirs))
 
-                val coverageSourceDirs = listOf("src/main/kotlin")
-
-                additionalSourceDirs.from(project.files(coverageSourceDirs))
-                sourceDirectories.from(project.files(coverageSourceDirs))
-
-                executionData.from(
-                    project.fileTree(
-                        mapOf(
-                            "dir" to "$project.buildDir",
-                            "includes" to listOf(
-                                "jacoco/*.exec",
-                                "outputs/code_coverage/**/connected/*.ec",
-                                "tmp/tests/*.exec",
-                                "tmp/tests/*.ec"
-                            )
+            executionData.from(
+                project.fileTree(
+                    mapOf(
+                        "dir" to "${project.buildDir}",
+                        "includes" to listOf(
+                            "jacoco/testDebugUnitTest.exec",
+                            "outputs/code_coverage/**/connected/*.ec",
+                            "tmp/tests/*.exec",
+                            "tmp/tests/*.ec"
                         )
                     )
                 )
+            )
 
-                executionData(project.tasks.withType<Test>())
 
-                doLast {
-                    println("Jacoco report has been generated to file://${reports.html.destination}")
-                }
+            doLast {
+                println("Jacoco report has been generated to file://${reports.html.destination}")
             }
+
         }
 
         // ######## ktlint ##########
