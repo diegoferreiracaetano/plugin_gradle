@@ -1,12 +1,14 @@
 package com.diegoferreiracaetano.versions
 
+import org.gradle.api.JavaVersion.VERSION_1_10
+
 object AndroidConfig {
 
     const val APPLICATION_ID = "com.diegoferreiracaetano.driver"
     const val COMPILE_SDK = 28
     const val MIN_SDK = 21
     const val TARGET_SDK = COMPILE_SDK
-    const val JAVA_VERSION = 1.8
+    val JAVA_VERSION = VERSION_1_10
     const val VERSION_NAME = "0.0.1"
     const val VERSION_CODE = 1
 }

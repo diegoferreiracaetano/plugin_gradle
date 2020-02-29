@@ -94,6 +94,12 @@ class DependenciesPlugin : Plugin<Project> {
                     it.getByName("test").resources.srcDirs(Source.SHARED_TEST_RESOURCES)
                 }
 
+
+                compileOptions {
+                    it.sourceCompatibility = AndroidConfig.JAVA_VERSION
+                    it.targetCompatibility = AndroidConfig.JAVA_VERSION
+                }
+
                 testOptions {
                     it.animationsDisabled = true
                     it.unitTests.apply {
