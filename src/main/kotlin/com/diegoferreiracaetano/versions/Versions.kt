@@ -14,7 +14,7 @@ object Versions {
     const val MOCKITO = "2.27.0"
     const val ESPRESSO = "3.1.1"
     const val TEST_RUNNER = "1.1.1"
-    const val ROBOLECTRIC = "4.3.1"
+    const val ROBOLECTRIC = "4.3"
     const val JUNIT_EXT = "1.1.0"
     const val ROOM = "2.2.0-alpha02"
     const val ORCHESTRATOR = "1.0.2"

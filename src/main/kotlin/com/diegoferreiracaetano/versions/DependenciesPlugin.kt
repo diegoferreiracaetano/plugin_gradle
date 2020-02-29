@@ -114,8 +114,6 @@ class DependenciesPlugin : Plugin<Project> {
 
         // ######## JaCoCo ##########
 
-        // ######## JaCoCo ##########
-
         project.configure<JacocoPluginExtension> {
             toolVersion = Versions.JACOCO
         }
