@@ -70,17 +70,15 @@ class DependenciesPlugin : Plugin<Project> {
 
                 compileSdkVersion(AndroidConfig.COMPILE_SDK)
 
-                Versions.versionsApp().forEach { (s, list) ->
-
-                    println("Project name ://${project.name}")
+                Versions.versionsApp().forEach { (s, pair) ->
 
 
                     if (project.name == s) {
                         defaultConfig {
                             it.minSdkVersion(AndroidConfig.MIN_SDK)
                             it.targetSdkVersion(AndroidConfig.TARGET_SDK)
-                            it.versionCode = list[0] as Int
-                            it.versionName = list[0] as String
+                            it.versionCode = pair.first
+                            it.versionName = pair.second
                             it.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                         }
                     }
