@@ -1,6 +1,6 @@
 package com.diegoferreiracaetano.versions
 
-import org.gradle.api.JavaVersion.VERSION_1_10
+import org.gradle.api.JavaVersion.VERSION_1_8
 
 object AndroidConfig {
 
@@ -8,7 +8,7 @@ object AndroidConfig {
     const val COMPILE_SDK = 28
     const val MIN_SDK = 21
     const val TARGET_SDK = COMPILE_SDK
-    val JAVA_VERSION = VERSION_1_10
+    val JAVA_VERSION = VERSION_1_8
     const val VERSION_NAME = "0.0.1"
     const val VERSION_CODE = 1
 }
