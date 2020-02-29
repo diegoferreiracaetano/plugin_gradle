@@ -35,11 +35,6 @@ class DependenciesPlugin : Plugin<Project> {
 
         project.apply {
 
-            if (project.name == "app")
-                it.plugin("com.android.application")
-            else
-                it.plugin("com.android.library")
-
             it.plugin("jacoco")
             it.plugin("kotlin-android")
             it.plugin("kotlin-android-extensions")
@@ -75,7 +70,6 @@ class DependenciesPlugin : Plugin<Project> {
 
                 compileSdkVersion(AndroidConfig.COMPILE_SDK)
                 defaultConfig {
-                    it.applicationId = AndroidConfig.APPLICATION_ID
                     it.minSdkVersion(AndroidConfig.MIN_SDK)
                     it.targetSdkVersion(AndroidConfig.TARGET_SDK)
                     it.versionCode = AndroidConfig.VERSION_CODE
