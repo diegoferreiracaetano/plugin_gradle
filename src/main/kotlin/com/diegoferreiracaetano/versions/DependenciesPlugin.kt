@@ -78,7 +78,6 @@ class DependenciesPlugin : Plugin<Project> {
                             it.targetSdkVersion(AndroidConfig.TARGET_SDK)
                             it.versionCode = module.versionCode
                             it.versionName = module.versionName
-                            it.applicationId = module.applicationId
                             it.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                         }
                     }
