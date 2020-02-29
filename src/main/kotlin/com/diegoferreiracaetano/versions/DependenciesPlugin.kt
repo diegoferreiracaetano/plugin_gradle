@@ -84,7 +84,6 @@ class DependenciesPlugin : Plugin<Project> {
                     it.getByName("release") {
                         it.signingConfig = signingConfigs.getByName("release")
                         it.isMinifyEnabled = true
-                        it.isShrinkResources = true
                     }
                 }
 
