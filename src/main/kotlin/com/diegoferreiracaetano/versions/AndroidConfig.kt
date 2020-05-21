@@ -8,6 +8,8 @@ object AndroidConfig {
     const val MIN_SDK = 21
     const val TARGET_SDK = COMPILE_SDK
     val JAVA_VERSION = VERSION_1_8
+    const val VERSION_CODE = 1
+    const val VERSION_NAME = "0.0.1"
 }
 
 object Source {

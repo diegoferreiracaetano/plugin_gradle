@@ -4,6 +4,8 @@ object Versions {
 
     const val KOTLIN = "1.3.61"
     const val SUPPORT_LIBRARY = "1.0.0"
+    const val DESING = "1.1.0"
+    const val VIEW_PAGER2 = "1.0.0"
     const val APP_COMPAT = "1.0.2"
     const val LIFECYCLE = "2.2.0-rc02"
     const val PAGING = "1.0.1"

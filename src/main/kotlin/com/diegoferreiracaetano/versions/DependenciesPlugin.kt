@@ -70,18 +70,30 @@ class DependenciesPlugin : Plugin<Project> {
 
                 compileSdkVersion(AndroidConfig.COMPILE_SDK)
 
+                defaultConfig {
+                    it.minSdkVersion(AndroidConfig.MIN_SDK)
+                    it.targetSdkVersion(AndroidConfig.TARGET_SDK)
+                    it.versionCode = VERSION_CODE
+                    it.versionName = VERSION_NAME
+                    it.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+                }
+
+                /*
+                multi repo
                 ModuleConfig.list.forEach { module ->
 
-                    if (project.name == module.name) {
-                        defaultConfig {
-                            it.minSdkVersion(AndroidConfig.MIN_SDK)
-                            it.targetSdkVersion(AndroidConfig.TARGET_SDK)
-                            it.versionCode = module.versionCode
-                            it.versionName = module.versionName
-                            it.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-                        }
-                    }
-                }
+                     if (project.name == module.name) {
+                         defaultConfig {
+                             it.minSdkVersion(AndroidConfig.MIN_SDK)
+                             it.targetSdkVersion(AndroidConfig.TARGET_SDK)
+                             it.versionCode = module.versionCode
+                             it.versionName = module.versionName
+                             it.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+                         }
+                     }
+                 }
+
+                 */
 
                 buildTypes {
                     it.getByName("debug") {

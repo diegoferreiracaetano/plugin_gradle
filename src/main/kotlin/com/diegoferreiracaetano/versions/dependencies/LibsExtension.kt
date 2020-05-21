@@ -27,11 +27,13 @@ open class LibsExtension {
         val FRAGMENT = "androidx.fragment:fragment:${Versions.SUPPORT_LIBRARY}"
         val CARD_VIEW = "androidx.cardview:cardview:${Versions.SUPPORT_LIBRARY}"
         val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${Versions.SUPPORT_LIBRARY}"
-        val DESIGN = "com.android.support:design:${Versions.SUPPORT_LIBRARY}"
+        val DESIGN = "com.google.android.material:material:${Versions.DESING}"
         val CORE_COMMON = "androidx.arch.core:core-common:${Versions.CORE_ARCH}"
         val CORE_RUNTIME = "androidx.arch.core:core-runtime:${Versions.CORE_ARCH}"
         val CONSTRAINT_LAYOUT =
             "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_LAYOUT}"
+        val VIEW_PAGER2 = "androidx.viewpager2:viewpager2:${Versions.VIEW_PAGER2}"
+
     }
 
     inner class Workmanager {
