@@ -73,8 +73,8 @@ class DependenciesPlugin : Plugin<Project> {
                 defaultConfig {
                     it.minSdkVersion(AndroidConfig.MIN_SDK)
                     it.targetSdkVersion(AndroidConfig.TARGET_SDK)
-                    it.versionCode = VERSION_CODE
-                    it.versionName = VERSION_NAME
+                    it.versionCode = AndroidConfig.VERSION_CODE
+                    it.versionName = AndroidConfig.VERSION_NAME
                     it.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 }
 
