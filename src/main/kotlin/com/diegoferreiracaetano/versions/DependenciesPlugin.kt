@@ -68,8 +68,11 @@ class DependenciesPlugin : Plugin<Project> {
                     }
                 }
 
-                kotlinOptions {
-                    jvmTarget = AndroidConfig.JAVA_VERSION
+
+                tasks.withType<KotlinCompile> {
+                    kotlinOptions {
+                        jvmTarget = AndroidConfig.JAVA_VERSION
+                    }
                 }
 
                 compileSdkVersion(AndroidConfig.COMPILE_SDK)
