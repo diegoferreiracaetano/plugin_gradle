@@ -7,20 +7,13 @@ plugins {
 }
 
 group = "com.diegoferreiracaetano"
-version = "0.1.59"
+version = "0.1.62"
 
 repositories {
     mavenCentral()
     jcenter()
     google()
     maven("https://oss.sonatype.org/content/repositories/snapshots")
-
-    maven {
-        url = uri("https://jitpack.io")
-        credentials {
-            username = "jp_l3mk9o3jk45s50tg8qs1pjgqgr"
-        }
-    }
 }
 
 
